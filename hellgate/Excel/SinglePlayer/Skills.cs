@@ -124,6 +124,21 @@ namespace Hellgate.Excel
         public float powerCostPerLevel;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 8)]
         byte[] unknown5;
+        public Int32 perkPointCost1;
+		public Int32 perkPointCost2;
+		public Int32 perkPointCost3;
+		public Int32 perkPointCost4;
+		public Int32 perkPointCost5;
+		public Int32 perkPointCost6;
+		public Int32 perkPointCost7;
+		public Int32 perkPointCost8;
+		public Int32 perkPointCost9;
+		public Int32 perkPointCost10;
+		public Int32 perkPointCost11;
+		public Int32 perkPointCost12;
+		public Int32 perkPointCost13;
+		public Int32 perkPointCost14;
+		public Int32 perkPointCost15;		
         public Int32 priority;
         //[ExcelOutput(IsTableIndex = true, TableStringId = "STATS")]
         public Int32 requiredStats1;
@@ -249,9 +264,9 @@ namespace Hellgate.Excel
         [ExcelOutput(IsScript = true)]
         public Int32 coolDownPercentChange;
         [ExcelOutput(IsScript = true)]
-        public Int32 statsTransferOnAttack;
-        [ExcelOutput(IsScript = true)]
         public Int32 statsSkillEvent;
+        [ExcelOutput(IsScript = true)]
+        public Int32 statsTransferOnAttack;
         [ExcelOutput(IsScript = true)]
         public Int32 statsSkillEventServer;
         [ExcelOutput(IsScript = true)]
@@ -316,6 +331,8 @@ namespace Hellgate.Excel
         public Int32 powerCostScript;
         [ExcelOutput(IsScript = true)]
         public Int32 coolDownSkillScript;
+        [ExcelOutput(IsScript = true)]
+        public Int32 selectCondition;
         [ExcelOutput(IsTableIndex = true, TableStringId = "SKILLS")]
         public Int32 skillOnpulse;//idx
         [ExcelOutput(IsTableIndex = true, TableStringId = "STATS")]
@@ -351,6 +368,8 @@ namespace Hellgate.Excel
         public Int32 stateOnSelect;//idx
         [ExcelOutput(IsTableIndex = true, TableStringId = "STATES")]
         public Int32 clearStateOnSelect;//idx
+        [ExcelOutput(IsTableIndex = true, TableStringId = "STATES")]
+        public Int32 preventClearStateOnSelect;//idx
         public Int32 holdTicks;
         [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODES")]
         public Int32 holdWithMode;//idx
@@ -408,208 +427,214 @@ namespace Hellgate.Excel
         public Int32 skillParent;
         [ExcelOutput(IsTableIndex = true, TableStringId = "MISSILES")]
         public Int32 fieldMissile;
+        public Int32 termForSharedStash;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 16)]
         byte[] unknown11;
 
         [FlagsAttribute]
         public enum Bitmask01 : uint
         {
-            _undefined1 = (1 << 0),
-            _undefined2 = (1 << 1),
-            usesWeapon = (1 << 2),
-            weaponIsRequired = (1 << 3),
-            weaponTargeting = (1 << 4),
-            usesWeaponSkill = (1 << 5),
-            useWeaponCooldown = (1 << 6),
-            cooldownUnitInsteadOfWeapon = (1 << 7),
-            _undefined3 = (1 << 8),
-            useWeaponIcon = (1 << 9),
-            useAllWeapons = (1 << 10),
-            combineWeaponDamage = (1 << 11),
-            usesUnitFiringError = (1 << 12),
-            displayFiringError = (1 << 13),
-            _undefined4 = (1 << 14),
-            checkLOS = (1 << 15),
-            noLowAiming3rdPerson = (1 << 16),
-            noHighAiming3rdPerson = (1 << 17),
-            canTargetUnit = (1 << 18),
-            findTargetUnit = (1 << 19),
-            mustTargetUnit = (1 << 20),
-            mustNotTargetUnit = (1 << 21),
-            monsterMustTargetUnit = (1 << 22),
-            cannotRetarget = (1 << 23),
-            verifyTarget = (1 << 24),
-            verifyTargetOnRequest = (1 << 25),
-            targetsPosition = (1 << 26),
-            keepTargetPositionOnRequest = (1 << 27),
-            targetPosInStart = (1 << 28),
-            targetDead = (1 << 29),
-            dyingOnStart = (1 << 30),
-            dyingAfterStart = ((uint)1 << 31)
+            byte_934961	= 1,//0
+			_undefined1 = 2,
+			usesWeapon = 4,	//2
+			usesWeaponBuffsOnly = 8,	//3
+			weaponIsRequired = 16,	//4
+			useWeaponTargeting = 32,	//5
+			usesWeaponSkill = 64,	//6
+			useWeaponCooldown = 128,	//7
+			cooldownUnitInsteadOfWeapon = 256,	//8
+			_undefined9 = 512,
+			useWeaponIcon = 1024,	//A
+			useAllWeapons = 2048,	//B
+			combineWeaponDamage = 4096,	//C
+			usesUnitFiringError = 8192,	//D
+			displayFiringError = 16384,	//E
+			_undefinedF = 32768,
+			checkLOS = 65536,	//10
+			_undefined11 = 131072,
+			_undefined12 = 262144,
+			canTargetUnit = 524288,	//13
+			findTargetUnit = 1048576,	//14
+			mustTargetUnit = 2097152,	//15
+			mustNotTargetUnit = 4194304,	//16
+			monsterMustTargetUnit = 8388608,	//17
+			cannotRetarget = 16777216,	//18
+			verifyTarget = 33554432,	//19
+			verifyTargetOnRequest = 67108864,	//1A
+			targetsPosition = 134217728,	//1B
+			keepTargetPositionOnRequest = 268435456,	//1C
+			targetPosInStat = 536870912,	//1D
+			targetDead = 1073741824,	//1E
+			targetDyingOnStart = 2147483648	//1F
         }
 
         [FlagsAttribute]
         public enum Bitmask02 : uint
         {
-            targetSelectableDead = 1,
-            targetFriend = 2,
-            targetEnemy = 4,
-            targetContainer = 8,
-            targetDestructables = 16,
-            targetOnlyDying = 32,
-            dontTargetDestructables = 64,
-            targetPets = 128,
-            ignoreTeams = 256,
-            allowUntargetables = 512,
-            uiUsersTarget = 1024,
-            dontFaceTarget = 2048,
-            mustFaceForward = 4096,
-            aimAtTarget = 8192,
-            // = 16384,
-            useMouseSkillsTargeting = 32768,
-            isMelee = 65536,
-            doMeleeItemEvents = 131072,
-            canDelayMelee = 262144,
-            deadCanDo = 524288,
-            stopAll = 1048576,
-            stopOnDead = 2097152,
-            startOnSelect = 4194304,
-            alwaysSelected = 8388608,
-            // = 16777216,
-            highlightWhenSelected = 33554432,
-            repeatFire = 67108864,
-            repeatAll = 134217728,
-            hold = 268435456,
-            loopMode = 536870912,
-            stopHoldingSkills = 1073741824,
-            holdOtherSkills = 2147483648
+            targetDyingAfterStart = 1,	//20
+			targetSelectableDead = 2,	//21
+			targetFriend = 4,	//22
+			targetEnemy = 8,	//23
+			targetContainer = 16,	//24
+			targetDestructables = 32,	//25
+			targetOnlyDying = 64,	//26
+			doNotTargetDestructables = 128,	//27
+			targetPets = 256,	//28
+			ignoreTeams = 512,	//29
+			allowUntargetables = 1024,	//2A
+			uiUsesTarget = 2048,	//2B
+			doNotFaceTarget = 4096,	//2C
+			mustFaceForward = 8192,	//2D
+			aimAtTarget = 16384,	//2E
+			_undefined2F = 32768,
+			useMouseSkillTargeting = 65536,	//30
+			isMelee = 131072,	//31
+			doMeleeItemEvents = 262144,	//32
+			_undefined33 = 524288,
+			canDelayMelee = 1048576,	//34
+			deadCanDo = 2097152,	//35
+			stopall = 4194304,	//36
+			stopOnDead = 8388608,	//37
+			startOnSelect = 16777216,	//38
+			alwaysSelected = 33554432,	//39
+			_undefined3A = 67108864,
+			highlightWhenSelected = 134217728,	//3B
+			repeatFire = 268435456,	//3C
+			repeatAll = 536870912,	//3D
+			hold = 1073741824,	//3E
+			loopMode = 2147483648	//3F
         }
 
         [FlagsAttribute]
         public enum Bitmask03 : uint
         {
-            preventOtherSkills = 1,
-            preventSkillsByPriority = 2,
-            runToTarget = 4,
-            skillIsOn = 8,
-            onGroundOnly = 16,
-            learnable = 32,
-            hotkeyable = 64,
-            canGoInMouseButton = 128,
-            canGoInLeftMouseButton = 256,
-            usesPower = 512,
-            drainsPower = 1024,
-            ajustPowerByLevel = 2048,
-            powerCostBoundedByMaxPower = 4096,
-            allowRequest = 8192,
-            trackRequest = 16384,
-            trackMetrics = 32768,
-            saveMissiles = 65536,
-            removeMissilesOnStop = 131072,
-            stopOnCollied = 262144,
-            noPlayerSkillInput = 524288,
-            noPlayerMovementInput = 1048576,
-            noIdleOnStop = 2097152,
-            doNotClearRemoveOnMoveStates = 4194304,
-            useRange = 8388608,
-            displayRange = 16777216,
-            getHitCanDo = 33554432,
-            movingCantDo = 67108864,
-            playerStopMoving = 134217728,
-            constantCooldown = 268435456,
-            ignoreCooldownOnStart = 536870912,
-            playCooldownOnWeapon = 1073741824,
-            useUnitsCooldown = 2147483648
+            stopHoldingSkills = 1,	//40
+			holdOtherSkills = 2,	//41
+			preventOtherSkills = 4,	//42
+			preventSkillsByPriority = 8,	//43
+			runToTarget = 16,	//44
+			skillIsOn = 32,	//45
+			onGroundOnly = 64,	//46
+			learnable = 128,	//47
+			hotkeyable = 256,	//48
+			canGoInMouseButton = 512,	//49
+			canGoInLeftMouseButton = 1024,	//4A
+			usesPower = 2048,	//4B
+			drainsPower = 4096,	//4C
+			adjustPowerByLevel = 8192,	//4D
+			powerCostBoundedByMaxPower = 16384,	//4E
+			allowRequest = 32768,	//4F
+			trackRequest = 65536,	//50
+			trackMetrics = 131072,	//51
+			saveMissiles = 262144,	//52
+			removeMissilesOnStop = 524288,	//53
+			stopOnCollide = 1048576,	//54
+			noPlayerSkillInput = 2097152,	//55
+			noPlayerMovementInput = 4194304,	//56
+			noIdleOnStop = 8388608,	//57
+			doNotClearRemoveOnMoveStates = 16777216,	//58
+			useRange = 33554432,	//59
+			displayRange = 67108864,	//5A
+			getHitCanDo = 134217728,	//5B
+			movingCanNotDo = 268435456,	//5C
+			playerStopMoving = 536870912,	//5D
+			constantCooldown = 1073741824,	//5E
+			ignoreCooldownOnStart = 2147483648	//5F
         }
 
         [FlagsAttribute]
         public enum Bitmask04 : uint
         {
-            displayCooldown = 1,
-            checkRangeOnStart = 2,
-            checkMeleeRangeOnStart = 4,
-            dontUseWeaponRange = 8,
-            canStartInTown = 16,
-            cantStartInPvp = 32,
-            canStartInRts = 64,
-            alwaysTestCanStartSkill = 128,
-            isAggressive = 256,
-            angersTargetOnExecute = 512,
-            isRanged = 1024,
-            isSpell = 2048,
-            serverOnly = 4096,
-            clientOnly = 8192,
-            checkInventorySpace = 16384,
-            activatorWhileMoving = 32768,
-            activatorIgnoreMoving = 65536,
-            canNotDoInHellrift = 131072,
-            uiIsRedOnFalback = 262144,
-            impactUsesAimBone = 524288,
-            decoyCannotUse = 1048576,
-            // = 2097152,
-            // = 4194304,
-            doNotPreferForMouse = 8388608,
-            useHolyAuraForRange = 16777216,
-            // = 33554432,
-            disallowSameSkill = 67108864,
-            dontUseRangeForMeleeEvents = 134217728,
-            forceSkillRangeForMeleeEvents = 268435456,
-            disabled = 536870912,
-            skillLevelFromStateTarget = 1073741824,
-            usesItemRequirements = 2147483648
+            playCooldownOnWeapon = 1,	//60
+			useUnitCooldown = 2,	//61
+			addMonstersCooldown = 4,	//62
+			displayCooldown = 8,	//63
+			checkRangeOnStart = 16,	//64
+			checkMeleeRangeOnStart = 32,	//65
+			dontUseWeaponRange = 64,	//66
+			canStartInTown = 128,	//67
+			canNotStartInPvp = 256,	//68
+			_undefined69 = 512,
+			canStartInRts = 1024,	//6A
+			alwaysTestCanStartSkill = 2048,	//6B
+			isAggressive = 4096,	//6C
+			angersTargetOnExecute = 8192,	//6D
+			isRanged = 16384,	//6E
+			isNoneWeaponSkill = 32768,	//6F
+			serverOnly = 65536,	//70
+			clientOnly = 131072, //71
+			checkInventorySpace = 262144,	//72
+			activatorWhileMoving = 524288,	//73
+			activatorIgnoreMoving = 1048576,	//74
+			canNotDoInHellrift = 2097152,	//75
+			uiIsRedOnFallback = 4194304,	//76
+			impactUsesAimBone = 8388608,	//77
+			decoyCannotUse = 16777216,	//78
+			_undefined79 = 33554432,
+			_undefined7a = 67108864,
+			doNotPreferForMouse = 134217728,	//7B
+			useHolyAuraForRange = 268435456,	//7C
+			_undefined7D = 536870912,
+			disallowSameSkill = 1073741824,	//7E
+			doNotUseRangeForMeleeEvents = 2147483648	//7F
         }
 
         [FlagsAttribute]
         public enum Bitmask05 : uint
         {
-            preventAnimationCutoff = 1,
-            movesUnit = 2,
-            selectsAMeleeSkill = 4,
-            requiresSkillLevel = 8,
-            disableClientsidePathing = 16,
-            executeRequestedSkillOnMeleeAttack = 32,
-            canBeExecutedFromMeleeAttack = 64,
-            dontStopRequestAfterExecute = 128,
-            lerpCameraWhileOn = 256,
-            forceUseWeaponTargeting = 512,
-            dontClearCooldownOnDeath = 1024,
-            dontCooldownOnStart = 2048,
-            powerOnEvent = 4096,
-            // = 8192,
-            defaultShiftSkillEnabled = 16384,
-            shiftSkillAlwaysEnabled = 32768,
-            canKillPetsForPowerCost = 65536,
-            reducePowerMaxByPowerCost = 131072,
-            skillFromUnitEventTriggerNeedsDam = 262144,
-            aiIsBusyWhileOn = 524288,
-            dontSelectOnPurchase = 1048576,
-            // = 2097152,
-            neverSetCooldown = 4194304,
-            ignorePreventAllSkills = 8388608,
-            mustStartInPortalSafeLevel = 16777216,
-            // = 33554432,
-            dontTargetPets = 67108864,
-            requirePathToTarget = 134217728,
-            fireToLocation = 268435456,
-            testFiringConeOnStart = 536870912,
-            ignoreChampions = 1073741824,
-            faceTargetPosition = 2147483648
+            forceSkillRangeForMeleeEvents = 1,	//80
+			disabled = 2,	//81
+			skillLevelFromStateTarget = 4,	//82
+			usesItemRequirements = 8,	//83	
+			preventAnimationCutoff = 16,	//84
+			movesUnit = 32,	//85
+			selectsAMeleeSkill = 64,	//86
+			requiresSkillLevel = 128,	//87
+			disableClientsidePathing = 256,	//88
+			executeRequestedSkillOnMeleeAttack = 512,	//89
+			canBeExecutedFromMeleeAttack = 1024,	//8A
+			doNotStopRequestAfterExecute = 2048,	//8B
+			lerpCameraWhileOn = 4096,	//8C
+			forceUseWeaponTargeting = 8192,	//8D
+			doNotClearCooldownOnDeath = 16384,	//8E
+			doNotCooldownOnStart = 32768,	//8F
+			powerOnEvent = 65536,	//90
+			_undefined91 = 131072,
+			defaultShiftSkillEnabled = 262144,	//92
+			shiftSkillAlwaysEnabled = 524288,	//93
+			canKillPetsForPowerCost = 1048576,	//94
+			reducePowerMaxByPowerCost = 2097152,	//95
+			skillFromUnitEventTriggerNeedsDamageIncrement = 4194304,	//96
+			aiIsBusyWhileOn = 8388608,	//97
+			doNotSelectOnPurchase = 16777216,	//98
+			_undefined99 = 33554432,
+			neverSetCooldown = 67108864,	//9A
+			ignorePreventAllSkills = 134217728,	//9B
+			mustStartInPortalSafeLevel = 268435456,	//9C
+			_undefined9D = 536870912,
+			doNotTargetPets = 1073741824,	//9E
+			requirePathToTarget = 2147483648	//9F
         }
 
         [FlagsAttribute]
         public enum Bitmask06 : uint
         {
-            targetDeadAndAlive = 1,
-            restartSkillOnUnitReactivate = 2,
-            subscriptionRequiredToLearn = 4,
-            subscriptionRequiredToUse = 8,
-            forceUiToShowEffect = 16,
-            dontIgnoreOwnedState = 32,
-            ghostCanDo = 64,
-            useDoneForMissilePosition = 128,
-            transferDamageToPets = 256,
-            dontStagger = 512,
-            doesNotActivelyUseWeapon = 1024
+            fireToLocation = 1,	//A0
+			testFiringConeOnStart = 2,	//A1
+			ignoreChampions = 4,	//A2
+			faceTargetPosition = 8,	//A3
+			targetDeadAndAlive = 16,	//A4
+			restartSkillOnUnitReactivate = 32,	//A5
+			subscriptionRequiredToLearn = 64,	//A6
+			subscriptionRequiredToUse = 128,	//A7
+			forceUiToShowEffect = 256,	//A8
+			doNotIgnoreOwnedState = 512,	//A9
+			ghostCanDo = 1024,	//AA
+			useBoneForMissilePosition = 2048,	//AB
+			transferDamagesToPets = 4096,	//AC
+			doNotStagger = 8192,	//AD
+			doesNotActivelyUseWeapon = 16384,	//AE
+			isPlayerSSkill = 32768,	//AF
         }
 
         public enum StartFunc
@@ -655,7 +680,6 @@ namespace Hellgate.Excel
             TurretGround = 0,
             TurretFlying = 1
         }
-
         public static class Mysh
         {
             public static readonly byte[] Data = new byte[]

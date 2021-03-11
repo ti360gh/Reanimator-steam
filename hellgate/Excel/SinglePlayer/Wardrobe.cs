@@ -74,7 +74,7 @@ namespace Hellgate.Excel
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
         public string attachBone;                                                           // 0x1C4
         public Int32 undefined6;                                                            // 0x2C4 (null name)
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 10)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 11)]
         Int32[] undefined7;
         [ExcelOutput(IsBool = true)]
         public Int32 hasBoneIndex;//bool                                                    // 0x2F0

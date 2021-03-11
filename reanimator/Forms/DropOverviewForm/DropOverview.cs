@@ -99,7 +99,8 @@ namespace Reanimator.Forms.DropOverviewForm
         private TreasureTableEntry ParseRow(DataRow row, float dropChance, TreeNode node)
         {
             //the index of the first item entry 13 for SP, 19 for MP
-            int tablePosition = 13;
+            // steam version is 19;
+            int tablePosition = 19;
 
             if (_fileManager.ClientVersion  == FileManager.ClientVersions.Resurrection)
             {

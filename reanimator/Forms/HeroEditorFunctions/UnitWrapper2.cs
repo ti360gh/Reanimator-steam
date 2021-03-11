@@ -77,8 +77,10 @@ namespace Reanimator.Forms.HeroEditorFunctions
 
         public UnitWrapper2(string savegamePath, FileManager fileManager)
         {
-            baseCharacter.ParseFileBytes(File.ReadAllBytes(savegamePath));
+            baseCharacter = new CharacterFile(savegamePath);
             this.fileManager = fileManager;
+            //baseCharacter.ParseFileBytes(File.ReadAllBytes(savegamePath));
+            baseCharacter.ParseFileBytesFM(File.ReadAllBytes(savegamePath),false, this.fileManager);
 
             ParseCharacter(baseCharacter.Character);
         }

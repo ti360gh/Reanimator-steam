@@ -53,7 +53,10 @@ namespace Hellgate.Excel
         public Int32 noGore;//idx;                                  // 0x194    404
         [ExcelOutput(IsTableIndex = true, TableStringId = "PROPS")]
         public Int32 noHumans;//idx                                 // 0x198    408
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+		public Int32 ppl_folderCode;//code?
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
+        public string link;		
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
         Int32[] undefined3;                                         // 0x19C    412
         // end of struct                                            // 0x1A8    424
     }

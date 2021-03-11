@@ -84,5 +84,7 @@ namespace Hellgate.Excel
         public Int32 gossipString2;//stridx
         [ExcelOutput(IsStringIndex = true)]
         public Int32 gossipString3;//stridx
+        //[ExcelOutput(IsTableIndex = true, TableStringId = "")]//table 9F
+        public Int32 relatedTemplateStateForGossip;
     }
 }

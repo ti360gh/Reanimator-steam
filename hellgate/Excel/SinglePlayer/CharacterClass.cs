@@ -48,7 +48,6 @@ namespace Hellgate.Excel
         public Int32 femaleUnit7;
         [ExcelOutput(IsBool = true)]
         public Int32 femaleEnabled;
-        public Int32 unitVersionToGetSkillRespec;
         [ExcelOutput(IsStringIndex = true)]
         public Int32 stringOneLetterCode;
         [ExcelOutput(IsBool = true)]

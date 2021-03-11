@@ -29,6 +29,7 @@ namespace Hellgate.Excel
         public TechniqueGroup techniqueGroup;
         public Int32 sBranchDepthUS;
         public Int32 sBranchDepthPS;
+		public Int32 onlyOutline;
 
         [FlagsAttribute]
         public enum BitMask01 : uint

@@ -604,6 +604,7 @@ namespace Revival.Common
             if (type == typeof(Char)) return Char.Parse(value);
             if (type == typeof(Int64)) return Int64.Parse(value);
             if (type == typeof(UInt64)) return UInt64.Parse(value);
+            if (type == typeof(Boolean)) return Boolean.Parse(value);
 
             return null;
         }

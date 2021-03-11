@@ -107,6 +107,42 @@ namespace Hellgate.Excel
         public Int32 skillallowtype3e;
         [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
         public Int32 skillallowtype3f;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType1a;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType1b;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType1c;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType1d;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType1e;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType1f;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType2a;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType2b;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType2c;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType2d;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType2e;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType2f;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType3a;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType3b;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType3c;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType3d;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType3e;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 skillPrevetType3f;
         public Int32 allowskilllevel1;
         public Int32 allowskilllevel2;
         public Int32 allowskilllevel3;
@@ -164,11 +200,12 @@ namespace Hellgate.Excel
             removeFromInventoryOnOwnerDeath = 4194304,
             cannotAcceptNoDropItems = 8388608,
             cannotAcceptNoTradeItems = 16777216,
-            cannotDismantleItems = 33554432,
-            weaponconfigLocation = 67108864,
-            freeOnSizeChange = 134217728,
-            enableCacheLocation = 268435456,
-            disableCacheLocation = 536870912
+			cannotAcceptNoAuctionItems =33554432,
+            cannotDismantleItems = 67108864,
+            weaponconfigLocation = 134217728,
+            freeOnSizeChange = 268435456,
+            enableCacheLocation = 536870912,
+            disableCacheLocation = 1073741824
         }
     }
 }

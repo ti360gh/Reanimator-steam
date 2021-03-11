@@ -17,6 +17,9 @@ namespace Hellgate.Excel
         public Int32 weight;
         [ExcelOutput(IsScript = true)]
         public Int32 condition;//intptr
+        [ExcelOutput(IsBool = true)]
         public Int32 dontUseWithoutAGame;
+        [ExcelOutput(IsBool = true)]
+        public Int32 isPvpToolTip;
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Runtime.InteropServices;
 using RowHeader = Hellgate.ExcelFile.RowHeader;
+using ExcelOutput = Hellgate.ExcelFile.OutputAttribute;
 
 namespace Hellgate.Excel
 {
@@ -13,5 +14,6 @@ namespace Hellgate.Excel
         public Int32 PlayerAttackMonsterExp;
         public Int32 MonsterAttackPlayerDmg;
         public Int32 PlayerAttackPlayerDmg;
+        public Int32 PlayerAttackMonsterTreasureBonusPct;
     }
 }

@@ -6,7 +6,7 @@ using RowHeader = Hellgate.ExcelFile.RowHeader;
 namespace Hellgate.Excel
 {
     [Serializable, StructLayout(LayoutKind.Sequential, Pack = 1)]
-    class Levels
+    public class Levels
     {
         RowHeader header;
         [ExcelOutput(SortColumnOrder = 1)]
@@ -24,6 +24,8 @@ namespace Hellgate.Excel
         public Int32 previousLevel;
         [ExcelOutput(IsTableIndex = true, TableStringId = "LEVEL")]
         public Int32 nextLevel;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "LEVEL")]
+        public Int32 levelWaypointOverride;
         [ExcelOutput(IsStringIndex = true)]
         public Int32 levelDisplayName;
         [ExcelOutput(IsStringIndex = true)]
@@ -36,9 +38,9 @@ namespace Hellgate.Excel
         public Int32 alwaysActive;
         [ExcelOutput(IsBool = true)]
         public Int32 startingLocation;
-        public Int32 unknown2;
         [ExcelOutput(IsTableIndex = true, TableStringId = "LEVEL")]
         public Int32 levelRestartRedirect;//index
+        public Int32 unknown2;
         [ExcelOutput(IsBool = true)]
         public Int32 portalAndRecallLoc;
         [ExcelOutput(IsBool = true)]
@@ -49,6 +51,10 @@ namespace Hellgate.Excel
         public Int32 subLevelTownPortal;//idx
         [ExcelOutput(IsBool = true)]
         public Int32 tutorial;
+        [ExcelOutput(IsBool = true)]
+        public Int32 disablePartyPortals;
+        [ExcelOutput(IsBool = true)]
+        public Int32 disableRecall;
         [ExcelOutput(IsBool = true)]
         public Int32 disableTownPortals;
         [ExcelOutput(IsBool = true)]
@@ -116,9 +122,11 @@ namespace Hellgate.Excel
         public Int32 unknown3;
         [ExcelOutput(IsBool = true)]
         public Int32 monsterLevelFromParentLevel;
-        [ExcelOutput(IsBool = true)]
-        public Int32 monsterLevelFromActivator;
+        public MonsterLevelFromActivator monsterLevelFromActivator;
+		public Int32 monsterMaxLevelLimit;
+		public Int32 monsterMinLevelLimit;
         public Int32 monsterLevelActivatorDelta;
+        public Int32 monsterLevelActivatorSpawnDelta;
         public Int32 selectRandomThemePct;
         public Int32 partySizeRecommended;
         [ExcelOutput(IsTableIndex = true, TableStringId = "SPAWN_CLASS")]
@@ -138,18 +146,21 @@ namespace Hellgate.Excel
         [ExcelOutput(IsBool = true)]
         public Int32 firstLevelCheating;
         public Int32 playerExpLevel;
-        public Int32 startingGold;
         [ExcelOutput(IsTableIndex = true, TableStringId = "TREASURE")]
         public Int32 bonusStartingTreasure;//idx
         public Int32 sequenceNumber;
+        public Int32 startingGold;
         [ExcelOutput(IsTableIndex = true, TableStringId = "ACT")]
         public Int32 act;//?idx
         public Int32 worldMapRow;
         public Int32 worldMapCol;
+		public Byte worldMapType;//ReadByte_Color
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
         public string worldMapFrame;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 256)]
         public string worldMapFrameUnexplored;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+        byte[] undefinedByte;
         [ExcelOutput(IsTableIndex = true, TableStringId = "FONTCOLORS")]
         public Int32 worldMapColor;
         public WorldMapLabelPos worldMapLabelPos; // XLS_InternalIndex_WorldMapLabelPos (XLS_LEVEL_DEFINITION+A61), 0x0C
@@ -185,9 +196,12 @@ namespace Hellgate.Excel
         public Int32 scriptPlayerEnterLevel;
         [ExcelOutput(IsBool = true)]
         public Int32 allowOverworldTravel;
+        [ExcelOutput(IsStringIndex = true)]
+        public Int32 pvpMapDescription;//stridx
+        [ExcelOutput(IsStringIndex = true)]
+        public Int32 loadingUixName;//stridx
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
         Int32[] unknown4;
-        Int32 unknown5;
 
         public enum SrvLevelType
         {
@@ -204,6 +218,17 @@ namespace Hellgate.Excel
             ELM = 9
         }
 
+        public enum MonsterLevelFromActivator
+        {
+            Null = -1,
+            Zero = 0,
+            None = 1,
+            First = 2,
+            OverDiff = 3,
+            Max = 4,
+            Min = 5,
+            PartyLeader = 6
+        }
         public enum WorldMapLabelPos
         {
             Null = -1,

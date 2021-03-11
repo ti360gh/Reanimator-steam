@@ -11,210 +11,219 @@ namespace Hellgate.Excel
         RowHeader header;
         [ExcelOutput(IsStringOffset = true, SortColumnOrder = 1)]
         public Int32 name; //pchar
-        Int32 undefined1;
+        Int32 undefined01;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 extension; //pchar
-        Int32 undefined2;
+        Int32 undefined02;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 lqExtension; //pchar
-        Int32 undefined3a;
-        Int32 undefined3b;
-        public PickType pickType;//unk
-        [ExcelOutput(IsTableIndex = true, TableStringId = "LANGUAGE")]
-        public Int32 language;//idx
+        Int32 undefined03a;
+        Int32 undefined03b;
+        public PickType pickType;//internalIndexArray count-1 type-4
+        public Language language;//internalIndexArray count-1 type-7
         public Int32 volume;
-        public float undefined2a;
+        public float undefinedFloat02;
         public float minRange;
         public float maxRange;
-        public RollOffType rollOffType;
+        public RollOffType rollOffType;//internalIndexArray count-1 type-5
         public Int32 reverbSend;
         [ExcelOutput(IsBitmask = true, DefaultBitmask = 0)]
         public BitMask01 bitmask01;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 directory;//pchar
         Int32 undefined5;
-        Int32 fileName1;
-        Int32 undefined6a;
-        Int32 undefined6b;
-        public Int32 undefined6c;//information
-        [ExcelOutput(IsTableIndex = true, TableStringId = "SOUNDS")]
-        public Int32 undefined6d;//idx
-        Int32 undefined6e;
+        public Int32 fileName1a;//indexMultipleRelations
+		public Int32 fileName1b;
+		public Int32 fileName1c;
+		public Int32 fileName1d;
+		public Int32 fileName1e;
+		public Int32 fileName1f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 undefined6f;//information
-        Int32 undefined6g;
+        public Int32 byte_943961_1;
+        Int32 undefined1g;
         public float weight1;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
-        Int32[] undefined7;
-        Int32 fileName2;
-        Int32 undefined8a;
-        Int32 undefined8b;
-        public Int32 undefined8c;//information
-        [ExcelOutput(IsTableIndex = true, TableStringId = "SOUNDS")]
-        public Int32 undefined8d;//idx
-        Int32 undefined8e;
+        Int32[] undefined1h;
+        public Int32 fileName2a;//indexMultipleRelations
+		public Int32 fileName2b;
+		public Int32 fileName2c;
+		public Int32 fileName2d;
+		public Int32 fileName2e;
+		public Int32 fileName2f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 undefined8f;//information
-        Int32 undefined8g;
+        public Int32 byte_943961_2;
+        Int32 undefined2g;
         public float weight2;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
-        Int32[] undefined9;
-        Int32 fileName3;
-        Int32 undefined10a;
-        Int32 undefined10b;
-        public Int32 undefined10c;//information
-        [ExcelOutput(IsTableIndex = true, TableStringId = "SOUNDS")]
-        public Int32 undefined10d;//idx
-        Int32 undefined10e;
+        Int32[] undefined2h;
+        public Int32 fileName3a;//indexMultipleRelations
+		public Int32 fileName3b;
+		public Int32 fileName3c;
+		public Int32 fileName3d;
+		public Int32 fileName3e;
+		public Int32 fileName3f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 undefined10f;//information
-        Int32 undefined10g;
+        public Int32 byte_943961_3;
+        Int32 undefined3g;
         public float weight3;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
-        Int32[] undefined11;
-        Int32 fileName4;
-        Int32 undefined12a;
-        Int32 undefined12b;
-        public Int32 undefined12c;//information
-        [ExcelOutput(IsTableIndex = true, TableStringId = "SOUNDS")]
-        public Int32 undefined12d;//idx
-        Int32 undefined12e;
+        Int32[] undefined3h;
+        public Int32 fileName4a;//indexMultipleRelations
+		public Int32 fileName4b;
+		public Int32 fileName4c;
+		public Int32 fileName4d;
+		public Int32 fileName4e;
+		public Int32 fileName4f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 undefined12f;//information
-        Int32 undefined12g;
+        public Int32 byte_943961_4;
+        Int32 undefined4g;
         public float weight4;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
-        Int32[] undefined13;
-        Int32 fileName5;
-        Int32 undefined14a;
-        Int32 undefined14b;
-        public Int32 undefined14c;//information
-        [ExcelOutput(IsTableIndex = true, TableStringId = "SOUNDS")]
-        public Int32 undefined14d;//idx
-        Int32 undefined14e;
+        Int32[] undefined4h;
+        public Int32 fileName5a;//indexMultipleRelations
+		public Int32 fileName5b;
+		public Int32 fileName5c;
+		public Int32 fileName5d;
+		public Int32 fileName5e;
+		public Int32 fileName5f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 undefined14f;//information
-        Int32 undefined14g;
+        public Int32 byte_943961_5;
+        Int32 undefined5g;
         public float weight5;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
-        Int32[] undefined15;
-        Int32 fileName6;
-        Int32 undefined16a;
-        Int32 undefined16b;
-        public Int32 undefined16c;//information
-        [ExcelOutput(IsTableIndex = true, TableStringId = "SOUNDS")]
-        public Int32 undefined16d;//idx
-        Int32 undefined16e;
+        Int32[] undefined5h;
+        public Int32 fileName6a;//indexMultipleRelations
+		public Int32 fileName6b;
+		public Int32 fileName6c;
+		public Int32 fileName6d;
+		public Int32 fileName6e;
+		public Int32 fileName6f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 undefined16f;//information
-        Int32 undefined16g;
+        public Int32 byte_943961_6;
+        Int32 undefined6g;
         public float weight6;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
-        Int32[] undefined17;
-        Int32 fileName7;
-        Int32 undefined18a;
-        Int32 undefined18b;
-        public Int32 undefined18c;//information
-        [ExcelOutput(IsTableIndex = true, TableStringId = "SOUNDS")]
-        public Int32 undefined18d;//idx
-        Int32 undefined18e;
+        Int32[] undefined6h;
+        public Int32 fileName7a;//indexMultipleRelations
+		public Int32 fileName7b;
+		public Int32 fileName7c;
+		public Int32 fileName7d;
+		public Int32 fileName7e;
+		public Int32 fileName7f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 undefined18f;//information
-        Int32 undefined18g;
+        public Int32 byte_943961_7;
+        Int32 undefined7g;
         public float weight7;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
-        Int32[] undefined19;
-        Int32 fileName8;
-        Int32 undefined20a;
-        Int32 undefined20b;
-        public Int32 undefined20c;//information
-        [ExcelOutput(IsTableIndex = true, TableStringId = "SOUNDS")]
-        public Int32 undefined20d;//information - is NOT string offset
-        Int32 undefined20e;
+        Int32[] undefined7h;
+        public Int32 fileName8a;//indexMultipleRelations
+		public Int32 fileName8b;
+		public Int32 fileName8c;
+		public Int32 fileName8d;
+		public Int32 fileName8e;
+		public Int32 fileName8f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 undefined20f;//information
-        Int32 undefined20g;
+        public Int32 byte_943961_8;
+        Int32 undefined8g;
         public float weight8;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
-        Int32[] undefined21;
-        Int32 fileName9;
-        Int32 undefined22a;
-        Int32 undefined22b;
-        public Int32 undefined22c;//information
-        [ExcelOutput(IsTableIndex = true, TableStringId = "SOUNDS")]
-        public Int32 undefined22d;//information - is NOT string offset
-        Int32 undefined22e;
+        Int32[] undefined8h;
+        public Int32 fileName9a;//indexMultipleRelations
+		public Int32 fileName9b;
+		public Int32 fileName9c;
+		public Int32 fileName9d;
+		public Int32 fileName9e;
+		public Int32 fileName9f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 undefined22f;//information
-        Int32 undefined22g;
+        public Int32 byte_943961_9;
+        Int32 undefined9g;
         public float weight9;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
-        Int32[] undefined23;
-        Int32 fileName10;
-        Int32 undefined24a;
-        Int32 undefined24b;
-        public Int32 undefined24c;//information
-        [ExcelOutput(IsTableIndex = true, TableStringId = "SOUNDS")]
-        public Int32 undefined24d;//information - is NOT string offset
-        Int32 undefined24e;
+        Int32[] undefined9h;
+        public Int32 fileName10a;//indexMultipleRelations
+		public Int32 fileName10b;
+		public Int32 fileName10c;
+		public Int32 fileName10d;
+		public Int32 fileName10e;
+		public Int32 fileName10f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 undefined24f;//information
-        Int32 undefined24g;
+        public Int32 byte_943961_10;
+        Int32 undefined10g;
         public float weight10;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
-        Int32[] undefined25;
-        Int32 fileName11;
-        Int32 undefined26a;
-        Int32 undefined26b;
-        public Int32 undefined26c;//information
-        [ExcelOutput(IsTableIndex = true, TableStringId = "SOUNDS")]
-        public Int32 undefined26d;//information - is NOT string offset
-        Int32 undefined26e;
+        Int32[] undefined10h;
+        public Int32 fileName11a;//indexMultipleRelations
+		public Int32 fileName11b;
+		public Int32 fileName11c;
+		public Int32 fileName11d;
+		public Int32 fileName11e;
+		public Int32 fileName11f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 undefined26f;//information
-        Int32 undefined26g;
+        public Int32 byte_943961_11;
+        Int32 undefined11g;
         public float weight11;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
-        Int32[] undefined27;
-        Int32 fileName12;
-        Int32 undefined28a;
-        Int32 undefined28b;
-        public Int32 undefined28c;//information
-        [ExcelOutput(IsTableIndex = true, TableStringId = "SOUNDS")]
-        public Int32 undefined28d;//information - is NOT string offset
-        Int32 undefined28e;
+        Int32[] undefined11h;
+        public Int32 fileName12a;//indexMultipleRelations
+		public Int32 fileName12b;
+		public Int32 fileName12c;
+		public Int32 fileName12d;
+		public Int32 fileName12e;
+		public Int32 fileName12f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 undefined28f;//information
-        Int32 undefined28g;
+        public Int32 byte_943961_12;
+        Int32 undefined12g;
         public float weight12;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
-        Int32[] undefined29;
-        Int32 fileName13;
-        Int32 undefined30a;
-        Int32 undefined30b;
-        public Int32 undefined30c;//information
-        [ExcelOutput(IsTableIndex = true, TableStringId = "SOUNDS")]
-        public Int32 undefined30d;//information - is NOT string offset
-        Int32 undefined30e;
+        Int32[] undefined12h;
+        public Int32 fileName13a;//indexMultipleRelations
+		public Int32 fileName13b;
+		public Int32 fileName13c;
+		public Int32 fileName13d;
+		public Int32 fileName13e;
+		public Int32 fileName13f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 undefined30f;//information
-        Int32 undefined30g;
+        public Int32 byte_943961_13;
+        Int32 undefined13g;
         public float weight13;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
-        Int32[] undefined31;
-        Int32 fileName14;
-        Int32 undefined32a;
-        Int32 undefined32b;
-        public Int32 undefined32c;//information
-        [ExcelOutput(IsTableIndex = true, TableStringId = "SOUNDS")]
-        public Int32 undefined32d;//information - is NOT string offset
-        Int32 undefined32e;
+        Int32[] undefined13h;
+        public Int32 fileName14a;//indexMultipleRelations
+		public Int32 fileName14b;
+		public Int32 fileName14c;
+		public Int32 fileName14d;
+		public Int32 fileName14e;
+		public Int32 fileName14f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 undefined32f;//information
-        Int32 undefined32g;
+        public Int32 byte_943961_14;
+        Int32 undefined14g;
         public float weight14;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
-        Int32[] undefined33;
+        Int32[] undefined14h;
+        public Int32 fileName15a;//indexMultipleRelations
+		public Int32 fileName15b;
+		public Int32 fileName15c;
+		public Int32 fileName15d;
+		public Int32 fileName15e;
+		public Int32 fileName15f;
+        [ExcelOutput(IsStringOffset = true)]
+        public Int32 byte_943961_15;
+        Int32 undefined15g;
+        public float weight15;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
+        Int32[] undefined15h;
+        public Int32 fileName16a;//indexMultipleRelations
+		public Int32 fileName16b;
+		public Int32 fileName16c;
+		public Int32 fileName16d;
+		public Int32 fileName16e;
+		public Int32 fileName16f;
+        [ExcelOutput(IsStringOffset = true)]
+        public Int32 byte_943961_16;
+        Int32 undefined16g;
+        public float weight16;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
+        Int32[] undefined16h;
         public Int32 freqVar;
         Int32 undefined34;
         public Int32 volVar;
@@ -264,11 +273,8 @@ namespace Hellgate.Excel
         Int32[] undefined45;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 effects;//pchar
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 11)]
         Int32[] undefined46;
-        public Int32 adsr_tcv4;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
-        public Int32[] undefined47;
 
         [FlagsAttribute]
         public enum BitMask01 : uint
@@ -287,18 +293,7 @@ namespace Hellgate.Excel
             dontRandomizeStart = (1 << 11),
             dontCrossfadeVariations = (1 << 12),
             unk02 = (1 << 13),
-            loadAtStartup = (1 << 14),
-            useGlobalLights = (1 << 15),
-            backupTransSpecular = (1 << 16),
-            emitsGpuParticles = (1 << 17),
-            isScreenEffect = (1 << 18),
-            loadAllTechniques = (1 << 19),
-            receiveRain = (1 << 20),
-            oneParticleSystem = (1 << 21),
-            usesPortals = (1 << 22),
-            requiresHavokFx = (1 << 23),
-            directionalInSH = (1 << 24),
-            emissivediffuse = (1 << 25)
+            loadAtStartup = (1 << 14)
         }
 
         public enum PickType
@@ -307,10 +302,29 @@ namespace Hellgate.Excel
             Rand = 0,
             All = 1
         }
+        public enum Language
+        {
+            Null = -1,
+            English = 0,
+            Korean = 1,
+            ChineseSimplified = 2,
+            ChineseTraditional = 3,
+            Japanese = 4,
+            French = 5,
+            Spanish = 6,
+            German = 7,
+            Italian = 8,
+            Polish = 9,
+            Czech = 10,
+            Hungarian = 11,
+            Russian = 12,
+            Thai = 13,
+            Vietnamese = 14
+        }
         public enum RollOffType
         {
             Null = -1,
-            None = 0,
+            None= 0,
             Log = 1,
             Linear = 2,
             Inverse = 3

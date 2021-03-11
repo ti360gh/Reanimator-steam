@@ -13,14 +13,14 @@ namespace Hellgate.Excel
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
         public string name;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public string name2;
+        public string swingEvents;
         public Int32 undefined1;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 128)]
-        public string name3;
+        public string particleFolder;
         public Int32 undefined2;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 tinyHit;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
         Int32[] undefined3;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 tinyDefault;
@@ -44,15 +44,11 @@ namespace Hellgate.Excel
         Int32[] undefined3e;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 tinyToxic;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5)]
         Int32[] undefined3f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 tinyPoison;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 21)]
-        Int32[] undefined3g;
-        [ExcelOutput(IsStringOffset = true)]
         public Int32 softHit;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
         Int32[] undefined9;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 softDefault;
@@ -76,18 +72,14 @@ namespace Hellgate.Excel
         Int32[] undefined9e;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 softToxic;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5)]
         Int32[] undefined9f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 softPoison;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 21)]
-        Int32[] undefined9g;
-        [ExcelOutput(IsStringOffset = true)]
-        public Int32 unknown1;//should be mediumHit
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+        public Int32 mediumHit;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
         Int32[] undefined4;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 unknown2;//should be mediumDefault
+        public Int32 mediumDefault;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
         Int32[] undefined4a;
         [ExcelOutput(IsStringOffset = true)]
@@ -107,16 +99,12 @@ namespace Hellgate.Excel
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
         Int32[] undefined4e;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 unknown3;//but should be mediumToxic
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
+        public Int32 mediumToxic;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5)]
         Int32[] undefined4f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 unknown4;//going by the other offsets in order this should be mediumPoison
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 21)]
-        Int32[] undefined4g;
-        [ExcelOutput(IsStringOffset = true)]
         public Int32 hardHit;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
         Int32[] undefined5;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 hardDefault;
@@ -140,15 +128,11 @@ namespace Hellgate.Excel
         Int32[] undefined5e;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 hardToxic;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5)]
         Int32[] undefined5f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 hardPoison;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 21)]
-        Int32[] undefined5g;
-        [ExcelOutput(IsStringOffset = true)]
         public Int32 kill;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
         Int32[] undefined6;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 killDefault;
@@ -172,15 +156,11 @@ namespace Hellgate.Excel
         Int32[] undefined6e;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 killToxic;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5)]
         Int32[] undefined6f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 killPoison;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 21)]
-        Int32[] undefined6g;
-        [ExcelOutput(IsStringOffset = true)]
         public Int32 block;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
         Int32[] undefined7;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 blockDefault;
@@ -204,15 +184,11 @@ namespace Hellgate.Excel
         Int32[] undefined7e;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 blockToxic;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5)]
         Int32[] undefined7f;
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 blockPoison;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 21)]
-        Int32[] undefined7g;
-        [ExcelOutput(IsStringOffset = true)]
         public Int32 fumble;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 3)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
         Int32[] undefined8;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 fumbleDefault;
@@ -236,11 +212,7 @@ namespace Hellgate.Excel
         Int32[] undefined8e;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 fumbleToxic;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5)]
         Int32[] undefined8f;
-        [ExcelOutput(IsStringOffset = true)]
-        public Int32 fumblePoison;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 21)]
-        Int32[] undefined8g;
     }
 }

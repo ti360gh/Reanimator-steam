@@ -11,7 +11,7 @@ namespace Hellgate.Excel
         RowHeader header;
         [ExcelOutput(SortColumnOrder = 1)]
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
-        public string name;
+        public string drlgName;
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
         public string drlgRuleSet;
         [ExcelOutput(IsStringIndex = true)]
@@ -88,5 +88,12 @@ namespace Hellgate.Excel
         public Int32 forceDrawAllRooms;//bool
         [ExcelOutput(IsBool = true)]
         public Int32 isOutDoors;//bool
+		public Int32 overrideFolderCodeMask1;
+		public Int32 overrideFolderCodeMask2;
+		public Int32 overrideFolderCodeMask3;
+		public Int32 overrideFolderCodeMask4;
+		public Int32 overrideFolderCodeMask5;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
+        Int32[] undefined3;
     }
 }

@@ -14,7 +14,7 @@ namespace Hellgate.Excel
         public String name;
         [ExcelOutput(SortColumnOrder = 2)]
         public Int32 code;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 7)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]
         Int32[] undefined;
     }
 }

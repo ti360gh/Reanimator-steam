@@ -64,7 +64,7 @@ namespace Hellgate.Excel.TestCentre
         public Int32 PlayerVsMonsterScalingIndex;
         public Int32 doNotUseEffectChanceStat_tcv4;
         [ExcelOutput(IsTableIndex = true, TableStringId = "STATS")]
-        public Int32 attackStat;//idx
+        public Int32 attackStat;//idx = 0x0;
         [ExcelOutput(IsTableIndex = true, TableStringId = "STATS")]
         public Int32 attackLocalStat;//idx
         [ExcelOutput(IsTableIndex = true, TableStringId = "STATS")]

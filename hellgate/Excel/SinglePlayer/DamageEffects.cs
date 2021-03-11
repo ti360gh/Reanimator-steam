@@ -11,7 +11,7 @@ namespace Hellgate.Excel
         RowHeader header;
         [ExcelOutput(SortColumnOrder = 1)]
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
-        public string stat;
+        public string damageEffect;
         [ExcelOutput(SortColumnOrder = 2)]
         public Int32 code;
         public Int32 damageType;
@@ -70,10 +70,6 @@ namespace Hellgate.Excel
         public Int32 attackSplashStat;//idx
         [ExcelOutput(IsTableIndex = true, TableStringId = "STATS")]
         public Int32 attackPctStat;//idx
-        [ExcelOutput(IsTableIndex = true, TableStringId = "STATS")]
-        public Int32 attackPctLocalStat;//idx
-        [ExcelOutput(IsTableIndex = true, TableStringId = "STATS")]
-        public Int32 attackPctSplashStat;//idx
         [ExcelOutput(IsTableIndex = true, TableStringId = "STATS")]
         public Int32 attackPctCasteStat;//idx
         [ExcelOutput(IsTableIndex = true, TableStringId = "STATS")]

@@ -17,13 +17,19 @@ namespace Hellgate.Excel
         public Int32[] allowUnitTypes;
         [ExcelOutput(IsTableIndex = true, TableStringId = "GLOBAL_THEMES")]
         public Int32 globalThemeRequired;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "GLOBAL_THEMES")]
+        public Int32 globalThemeProbBoostTheme;
+		public Int32 globalThemeBoostPct;
         Int32 unknown02;
-        public PickTypes pickType; // XLS_ReadInternalIndex_PickType (XLS_TREASURE_DATA+1D5), 0x08 /* 0 = one, 1 = all, 2 = modifiers_only, 3 = ind_percent, 4 = one_eliminate, 5 = first_valid */
+        public PickTypes pickType; // XLS_ReadInternalIndex_PickType (XLS_TREASURE_DATA+1D5), 0x08
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 20)]
         public Int32[] picks;
         public float noDrop;
+		public Int32 mustDrop;
         [ExcelOutput(IsScript = true)]
         public Int32 levelBoost;
+        public float gamblePriceRangeMin;
+        public float gamblePriceRangeMax;
         public float moneyChanceMultiplier;
         public float moneyLuckChanceMultiplier;
         public float moneyAmountMultiplier;
@@ -64,6 +70,18 @@ namespace Hellgate.Excel
         public Int32 spawnFromMonsterUnitType;
         [ExcelOutput(IsTableIndex = true, TableStringId = "LEVEL_THEMES")]
         public Int32 spawnFromLevelTheme;
+        //[ExcelOutput(IsTableIndex = true, TableStringId = "")]//table C8
+        public Int32 gameModeRestriction1;
+        //[ExcelOutput(IsTableIndex = true, TableStringId = "")]//table C8
+        public Int32 gameModeRestriction2;
+        //[ExcelOutput(IsTableIndex = true, TableStringId = "")]//table C8
+        public Int32 gameModeRestriction3;
+        //[ExcelOutput(IsTableIndex = true, TableStringId = "")]//table C8
+        public Int32 gameModeRestriction4;
+        //[ExcelOutput(IsTableIndex = true, TableStringId = "")]//table C8
+        public Int32 gameModeRestriction5;
+        //[ExcelOutput(IsTableIndex = true, TableStringId = "")]//table C8
+        public Int32 gameModeRestriction6;
 
         [FlagsAttribute]
         public enum Bitmask01 : uint
@@ -76,7 +94,8 @@ namespace Hellgate.Excel
             ResultsNotRequired = (1 << 5),
             StackTreasure = (1 << 6),
             MultiplayerOnly = (1 << 7),
-            SinglePlayerOnly = (1 << 8)
+            SinglePlayerOnly = (1 << 8),
+            baseOnPlayerLevel = (1 << 9)
         }
 
         public enum PickTypes

@@ -18,6 +18,8 @@ namespace Hellgate.Excel
         public Int32 displayString;//stridx
         [ExcelOutput(IsBool = true)]
         public Int32 drawOnlyKnown;//bool
+        [ExcelOutput(IsBool = true)]
+        public Int32 perkTab;//bool
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
         public string iconTextureName;
     }

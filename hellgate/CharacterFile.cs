@@ -55,6 +55,25 @@ namespace Hellgate
             byteOffset = UnitObjectOffset;
             Character.ParseUnitObject(fileBytes, byteOffset, fileBytes.Length - byteOffset);
         }
+        public void ParseFileBytesFM(byte[] fileBytes, bool debugOutputLoadingProgress, FileManager fileManager)
+        {
+            // sanity check
+            if (fileBytes == null) throw new ArgumentNullException("fileBytes", "File bytes cannot be null!");
+
+            Character = new UnitObject(debugOutputLoadingProgress);
+            int byteOffset = 0;
+
+            // main file header
+            FileHeader fileHeader = FileTools.ByteArrayToStructure<FileHeader>(fileBytes, ref byteOffset);
+
+            // file header checks
+            if (fileHeader.MagicWord != FileMagicWord) throw new Exceptions.UnexpectedMagicWordException();
+            if (fileHeader.Version != RequiredVersion) throw new Exceptions.NotSupportedFileVersionException();
+
+            byteOffset = UnitObjectOffset;
+            //Character.ParseUnitObject(fileBytes, byteOffset, fileBytes.Length - byteOffset);
+            Character.ParseUnitObjectFM(fileBytes, byteOffset, fileBytes.Length - byteOffset, fileManager);
+        }
 
         public void CreateNewCharacter(String name)
         {

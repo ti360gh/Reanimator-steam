@@ -397,6 +397,9 @@ namespace MediaWiki.Articles
             int levelNum, itemType;
             Dictionary<string, string> typeImages = new Dictionary<string, string>();
 
+            // 読めないのでパス
+            if (items is null) return null;
+
             foreach (DataRow item in items.Rows)
             {
                 if (item["code"].ToString() == "0") continue; // ignore blank rows

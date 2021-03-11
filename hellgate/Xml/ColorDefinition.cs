@@ -1,4 +1,5 @@
 ﻿using System;
+using Hellgate.Excel;
 using Hellgate.Excel.SinglePlayer;
 
 namespace Hellgate.Xml

@@ -78,6 +78,7 @@ namespace Hellgate.Excel
         public Int32 ingredient6ItemQuality;
         public Int32 ingredient6MinQuantity;
         public Int32 ingredient6MaxQuantity;
+        //[ExcelOutput(IsTableIndex = true, TableStringId = "")]//table 67
         public Int32 craftResult1;
         public Int32 craftResult2;
         public Int32 craftResult3;
@@ -97,6 +98,8 @@ namespace Hellgate.Excel
         public BitMask01 bitmask;
         public Int32 spawnLevelMin;
         public Int32 spawnLevelMax;
+        [ExcelOutput(IsBool = true)]
+        public Int32 hiddenTreasure;
 
         [FlagsAttribute]
         public enum BitMask01 : uint

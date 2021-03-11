@@ -39,6 +39,14 @@ namespace Hellgate.Excel
         public Int32 ghostCanTrigger;//bool
         [ExcelOutput(IsBool = true)]
         public Int32 hardCoreDeadCanTrigger;//bool;
+        [ExcelOutput(IsBool = true)]
+        public Int32 pvpMachine;
+        [ExcelOutput(IsBool = true)]
+        public Int32 marketPlaceTerminal;
+        [ExcelOutput(IsBool = true)]
+        public Int32 stash;
+        [ExcelOutput(IsBool = true)]
+        public Int32 waypointTerminal;
         public Int32 undefined2;
     }
 }

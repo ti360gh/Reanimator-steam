@@ -24,6 +24,7 @@ namespace Hellgate.Excel
         public Int32 skillPowerCost;
         public Int32 headstoneReturnCost;
         public Int32 deathExperiencePenaltyPercent;
+        public Int32 unknown1;//new unknown
         public Int32 restartHealthPercent;
         public Int32 restartPowerPercent;
         public Int32 restartShieldPercent;

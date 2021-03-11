@@ -16,12 +16,19 @@ namespace Hellgate.Excel
         public Int32 code;
         [ExcelOutput(IsBitmask = true, DefaultBitmask = 0)]
         public BitMask01 bitmask01;
+		public Int32 minimumExperienceLevelToEnter;
+		public float playerVsMonsterIncrementPct;
+		public Int32 monsterVsPlayerIncrementPct;
+		public Int32 experienceTotal;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "STATES")]
+        public Int32 requiredState;
 
         [FlagsAttribute]
         public enum BitMask01 : uint
         {
             betaAccountCanPlay = 1,
-            nonSubScriberAccountCanPlay = 2
+            nonSubScriberAccountCanPlay = 2,
+			trialAccountCanPLay = 4
         }
     }
 }

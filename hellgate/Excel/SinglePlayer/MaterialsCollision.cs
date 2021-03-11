@@ -21,5 +21,7 @@ namespace Hellgate.Excel
         public float reverbOcclusion;
         [ExcelOutput(IsTableIndex = true, TableStringId = "FONTCOLORS")]
         public Int32 debugColor;//idx
+        [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
+        public string max9Name;
     }
 }

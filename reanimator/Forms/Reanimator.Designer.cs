@@ -294,7 +294,7 @@
             this.viewMenu.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.excelTableEditorToolStripMenuItem,
             this.scriptEditorToolStripMenuItem,
-            this.tradeItemsToolStripMenuItem,
+            // this.tradeItemsToolStripMenuItem,
             this.extrasToolStripMenuItem,
             this.toolStripSeparator1,
             this.statusBarToolStripMenuItem});
@@ -328,7 +328,7 @@
             this.extrasToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.dropTableOverviewToolStripMenuItem,
             this.toolStripMenuItem1,
-            this.savegameOverviewToolStripMenuItem,
+            //this.savegameOverviewToolStripMenuItem,
             this.animationTestToolStripMenuItem,
             this.testToolStripMenuItem});
             this.extrasToolStripMenuItem.Name = "extrasToolStripMenuItem";
@@ -514,8 +514,8 @@
             this.Controls.Add(this.menuStrip);
             this.IsMdiContainer = true;
             this.MainMenuStrip = this.menuStrip;
-            this.Name = "Reanimator";
-            this.Text = "Reanimator";
+            this.Name = "Reanimator - steam";
+            this.Text = "Reanimator - steam";
             this.WindowState = System.Windows.Forms.FormWindowState.Maximized;
             this.Load += new System.EventHandler(this._ReanimatorLoad);
             this.ResizeEnd += new System.EventHandler(this._ReanimatorResizeEnd);

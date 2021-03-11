@@ -86,6 +86,11 @@ namespace Hellgate
 
             if (Attributes == null) return;
 
+            // if ( this.FileName == "treasure")
+			// {
+            //    int bp = 1;
+			// }
+
             // create field delegators
             if (Attributes.RowType != null)
             {
@@ -1035,7 +1040,7 @@ namespace Hellgate
 
                             if (newStringBuffer == null)
                             {
-                                newStringBuffer = new byte[1024];
+                                newStringBuffer = new byte[1024]; 
                             }
 
                             if (String.IsNullOrEmpty(strValue)) // i.e. is empty

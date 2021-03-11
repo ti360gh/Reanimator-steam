@@ -18,6 +18,8 @@ namespace Hellgate.Excel
         public Month endMonth;
         public Int32 endDay;
         public DayOfWeek endDayOfWeek;
+        public Int32 startTime;
+        public Int32 endTime;
         public Int32 treasureClassPreAndPost0a;
         public Int32 treasureClassPreAndPost0b;
         public Int32 treasureClassPreAndPost1a;
@@ -65,5 +67,6 @@ namespace Hellgate.Excel
             Friday = 5,
             Saturday = 6
         }
+
     }
 }

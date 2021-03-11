@@ -34,6 +34,10 @@ namespace Hellgate.Excel
         public Int32 environmentSpawnClass;//idx
         [ExcelOutput(SortColumnOrder = 2)]
         public Int32 code;
-        Int32 undefined3;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "MONSTERS")]
+        public Int32 eventSpawnMonsterClass;//idx
+        //[ExcelOutput(IsTableIndex = true, TableStringId = "")]//table 76
+        public Int32 eventSpawnMOnsterQuality;//idx
+        public Int32 eventSpawnMaxKillCount;
     }
 }

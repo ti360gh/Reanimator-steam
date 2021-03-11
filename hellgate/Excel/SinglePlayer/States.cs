@@ -48,6 +48,7 @@ namespace Hellgate.Excel
         public Int32 element;
         [ExcelOutput(IsScript = true)]
         public Int32 pulseRateInMs;
+        [ExcelOutput(IsScript = true)]
         public Int32 pulseRateInMsClient;            // always 0
         [ExcelOutput(IsStringOffset = true)]
         public Int32 pulseSkill;
@@ -62,11 +63,14 @@ namespace Hellgate.Excel
         [ExcelOutput(IsStringOffset = true)]
         public Int32 uiIconTexture;
         Int32 unknown31;            // always 0
-        public Int32 unknown32;     //not defined, even though it's used.
+        public Int32 uiconColor;     //not defined, even though it's used.
         Int32 unknown33;            // always 0
         [ExcelOutput(IsStringOffset = true)]
-        public Int32 unknown34;     //undefined as well.
+        public Int32 UiIconBack;     //undefined as well.
         Int32 unknown35;            // always 0
+		Int32 unknown35a;
+        [ExcelOutput(IsStringOffset = true)]
+        public Int32 unIconFront;
         [ExcelOutput(IsTableIndex = true, TableStringId = "FONTCOLORS")]
         public Int32 iconBackColor;
         Int32 unknown37;            // always 0
@@ -123,14 +127,19 @@ namespace Hellgate.Excel
         pulseOnSource = 131072,
         onChangeRepaintItemUi = 262144,
         saveInUnitfileHeader = 524288,
-        updateChatServerOnChange = 1048576,
-        triggerDigestSave = 2097152
+		persistTimerAcrossGames = 1048576,
+        updateChatServerOnChange = 2097152,
+		undefined = 4194304,
+        triggerDigestSave = 8388608,
+		isShared = 16777216,
+		isRealTime = 33554432
     }
     public enum GameFlag
     {
         Null = -1,
         Hardcore = 0,
         Elite = 1,
-        RolePlay = 2
+        League = 2,
+        PvpWorld = 3
     }
 }

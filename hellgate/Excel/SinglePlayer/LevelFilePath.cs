@@ -31,6 +31,11 @@ namespace Hellgate.Excel
         public Int32 localisedFolders7;
         public Language language; // XLS_InternalIndex_Language (XLS_LEVEL_FILE_PATH+A6), 0x0F
         public PakFile pakFlie; // XLS_InternalIndex_Pakfile (XLS_LEVEL_FILE_PATH+DA), 0x09
+		public Int32 overrideFolderCodeMask1;
+		public Int32 overrideFolderCodeMask2;
+		public Int32 overrideFolderCodeMask3;
+		public Int32 overrideFolderCodeMask4;
+		public Int32 overrideFolderCodeMask5;
 
         public enum Language
         {
@@ -62,6 +67,13 @@ namespace Hellgate.Excel
             SoundLow = 4,
             SoundMusic = 5,
             Localized = 6,
+            unknown7 = 7,
+            unknown8 = 8,
+            unknown9 = 9,
+            unknown10 = 10,
+            unknown11 = 11,
+            Advert = 12,
+            AdvertLocalized = 13
         }
     }
 }

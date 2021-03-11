@@ -15,7 +15,7 @@ namespace Hellgate.Excel
         byte[] undefined1;
         [ExcelOutput(SortColumnOrder = 2)]
         public Int32 code;
-        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")] // x256 of these
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")] // x320 of these
         public Int32 block1;
         [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")]
         public Int32 block2;
@@ -26,18 +26,18 @@ namespace Hellgate.Excel
         [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")]
         public Int32 block5;
         [ExcelOutput(ConstantValue = -1)]
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 251)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 315)]
         Int32[] block;
         [ExcelOutput(IsBool = true)]
         public Int32 blockOnGround;//bool
-        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")] // x256 of these
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")] // x320 of these
         public Int32 wait1;
         [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")]
         public Int32 wait2;
         [ExcelOutput(ConstantValue = -1)]
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 254)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 318)]
         Int32[] wait;
-        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")] // x256 of these
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")] // x320 of these
         public Int32 clear1;
         [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")]
         public Int32 clear2;
@@ -56,16 +56,16 @@ namespace Hellgate.Excel
         [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")]
         public Int32 clear9;
         [ExcelOutput(ConstantValue = -1)]
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 247)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 311)]
         Int32[] clear;
-        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")] // x256 of these
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")] // x320 of these
         public Int32 endBlock1;
         [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")]
         public Int32 endBlock2;
         [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")]
         public Int32 endBlock3;
         [ExcelOutput(ConstantValue = -1)]
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 253)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 317)]
         Int32[] endBlock;
         [ExcelOutput(IsTableIndex = true, TableStringId = "UNITMODE_GROUPS")]
         public Int32 group;//idx
@@ -80,6 +80,8 @@ namespace Hellgate.Excel
         [ExcelOutput(IsBool = true)]
         public Int32 clearSkill;//bool
         [ExcelOutput(IsTableIndex = true, TableStringId = "STATES")]
+        public Int32 stateDuringMode;//idx
+        [ExcelOutput(IsTableIndex = true, TableStringId = "STATES")]
         public Int32 clearState;//idx
         [ExcelOutput(IsTableIndex = true, TableStringId = "STATES")]
         public Int32 clearStateEnd;//idx
@@ -87,6 +89,7 @@ namespace Hellgate.Excel
         public Int32 doEvent;//bool
         [ExcelOutput(IsBool = true)]
         public Int32 endEvent;//bool
+        Int32 undefinedA;
         [ExcelOutput(IsStringOffset = true)]
         public Int32 doFunction;//pchar
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 5)]
@@ -153,7 +156,12 @@ namespace Hellgate.Excel
         public Int32 useBackupModeAnims;//bool
         [ExcelOutput(IsBool = true)]
         public Int32 playOnInventoryModel;//bool
-        public Int32 undefined5;
+        [ExcelOutput(IsBool = true)]
+        public Int32 hideWeapons;//bool
+        [ExcelOutput(IsBool = true)]
+        public Int32 emoteAllowHellgate;//bool
+        [ExcelOutput(IsBool = true)]
+        public Int32 emoteAllowMythos;//bool
 
         public enum VelocityName
         {

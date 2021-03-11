@@ -14,12 +14,23 @@ namespace Hellgate.Excel
         public string badgeRewardName;
         [ExcelOutput(SortColumnOrder = 2)]
         public Int32 code;
-        public BadgeName badgeName;
+        public BadgeName badgeName;//count1	type24
         [ExcelOutput(IsTableIndex = true, TableStringId = "ITEMS")]
         public Int32 item;//idx
+        //[ExcelOutput(IsTableIndex = true, TableStringId = "")]//table B1
         public Int32 dontApplyIfPlayerHasRewardItemFor;
         [ExcelOutput(IsTableIndex = true, TableStringId = "STATES")]
         public Int32 state;//idx
+		public Int32 minUnitVersion;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]
+        public Int32 unitTypeLimiter;//idx
+		public Int32 unitTypeLimitPerPlayer;
+        [ExcelOutput(IsBool = true)]
+		public Int32 forceOnRespec;
+        [ExcelOutput(IsScript = true)]
+		public Int32 filter;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "TREASURE")]
+        public Int32 treasure;//idx
 
         public enum BadgeName
         {
@@ -60,5 +71,6 @@ namespace Hellgate.Excel
             RewardOldUser = 97,
             RewardNewUser = 98
         }
+		
     }
 }

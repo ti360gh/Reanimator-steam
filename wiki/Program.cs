@@ -12,7 +12,8 @@ namespace MediaWiki
     {
         static void Main(string[] args)
         {
-            var manager = new FileManager(@"C:\Hellgate");
+            //var manager = new FileManager(@"C:\Hellgate");
+            var manager = new FileManager(@"F:\SteamLibrary\steamapps\common\HELLGATE_London");
             manager.BeginAllDatReadAccess();
             manager.LoadTableFiles();
             manager.EndAllDatAccess();

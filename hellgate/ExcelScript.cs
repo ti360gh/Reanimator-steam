@@ -13,7 +13,7 @@ namespace Hellgate
 
         // debug members
         public static bool DebugEnabled { get; private set; }
-        private static bool _globalDebug;
+        private static bool _globalDebug = true;
         private const String DebugRoot = @"C:\excel_script_debug\";
         private const String DebugRootTestCenter = @"C:\excel_script_debug_testcenter\";
         private const String DebugRootResurrection = @"C:\excel_script_debug_resurrection\";

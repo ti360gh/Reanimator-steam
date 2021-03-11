@@ -5,7 +5,7 @@ namespace Revival.Common
 {
     public abstract class Config
     {
-        const String Key = @"SOFTWARE\Reanimator";
+        const String Key = @"SOFTWARE\Reanimator-steam";
         static readonly RegistryKey RootKey = Registry.CurrentUser.CreateSubKey(Key);
         static readonly RegistryKey Configkey = RootKey.CreateSubKey("config");
 

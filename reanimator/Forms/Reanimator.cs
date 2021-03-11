@@ -31,6 +31,9 @@ namespace Reanimator.Forms
 
             #region snotz_stuff
             //TestScripts.ExtractFunctionList();
+            //const String path = @"C:\test\functionslist_asm.txt";
+            //String[] functionCode = File.ReadAllLines(path);
+            //ExcelScript.ExtractSteamFunctionList(functionCode);
             #endregion
 
             #region alexs_stuff
@@ -837,6 +840,7 @@ namespace Reanimator.Forms
             _fileManager.PreLoadTable("PLAYERS");
             _fileManager.PreLoadTable("SKILLS");
             _fileManager.PreLoadTable("STATS");
+            _fileManager.PreLoadTable("LEVEL");
 
             string[] savegames = Directory.GetFiles(Config.SaveDir, "*.hg1");
 

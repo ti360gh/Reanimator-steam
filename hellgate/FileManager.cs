@@ -257,6 +257,11 @@ namespace Hellgate
                 FileEntries.Values.Where(fileEntry => fileEntry.Name.EndsWith(ExcelFile.Extension) ||
                     (fileEntry.Name.EndsWith(StringsFile.Extention) && fileEntry.Path.Contains(Language))))
             {
+
+                //if (fileEntry.Name == "achievements.txt.cooked")
+                //    Debug.WriteLine("stop!");
+
+
                 byte[] fileBytes = GetFileBytes(fileEntry, ignorePatchedOut);
                 if (fileBytes == null)
                 {
@@ -264,7 +269,7 @@ namespace Hellgate
                     continue;
                 }
 
-                //if (fileEntry.Name.Contains("stats"))
+                // if (fileEntry.Name == "inventory.txt.cooked")
                 //{
                 //    int bp = 0;
                 //}
@@ -476,6 +481,7 @@ namespace Hellgate
         // Row from code
         public object GetRowFromCode(Xls.TableCodes tableCode, Int16 code)
         {
+            int bp = 1;
             ExcelFile table = GetExcelTableFromCode(tableCode);
             object row;
             return (table.RowFromCode.TryGetValue(code, out row)) ? row : null;
@@ -634,6 +640,11 @@ namespace Hellgate
             return null;
         }
 
+        public SortedDictionary<TKey, TValue> Convert<TKey, TValue>(Dictionary<TKey, TValue> map)
+        {
+            return new SortedDictionary<TKey, TValue>(map);
+        }
+
         /// <summary>
         /// Retrieves an Excel Table from its Code value. If it's not loaded, then it will be loaded and returned.
         /// </summary>
@@ -641,7 +652,9 @@ namespace Hellgate
         /// <returns>The Excel Table as a DataTable, or null if not found.</returns>
         public ExcelFile GetExcelTableFromCode(Xls.TableCodes code)
         {
-            if (DataFiles == null || DataFiles.ContainsKey(ExcelTablesStringId) == false || code == Xls.TableCodes.Null) return null;
+            if (DataFiles == null || DataFiles.ContainsKey(ExcelTablesStringId) == false || code == Xls.TableCodes.Null){
+                return null;
+                }
 
             if (_excelCodeToTable == null)
             {

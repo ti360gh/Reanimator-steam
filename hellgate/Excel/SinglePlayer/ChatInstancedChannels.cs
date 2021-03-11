@@ -9,11 +9,13 @@ namespace Hellgate.Excel
     class ChatInstancedChannels
     {
         RowHeader header;
+        [ExcelOutput(SortColumnOrder = 1)]
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 28)]
-        public string Channel;
-        public Int32 unknown1;
-        public Int32 unknown2;
+        public string name;
+        [ExcelOutput(IsBool = true)]
+        public Int32 optOut;
+        public Int32 maxMembers;
         [ExcelOutput(IsScript = true)]
-        public Int32 unknown3;
+        public Int32 code;
     }
 }

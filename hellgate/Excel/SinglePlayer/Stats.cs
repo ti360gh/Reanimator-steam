@@ -6,7 +6,7 @@ using RowHeader = Hellgate.ExcelFile.RowHeader;
 namespace Hellgate.Excel
 {
     [Serializable, StructLayout(LayoutKind.Sequential, Pack = 1)]
-    class Stats
+    public class Stats
     {
         RowHeader header;
         [ExcelOutput(SortColumnOrder = 1)]
@@ -25,15 +25,15 @@ namespace Hellgate.Excel
         public Int32 regenDelayOnZero;
         public Int32 regenDelayMonster;
         [ExcelOutput(IsTableIndex = true, TableStringId = "STATS")]
-        public Int32 undefined1; // excel index on table 27
+        public Int32 undefined1;
         [ExcelOutput(IsTableIndex = true, TableStringId = "STATS")]
-        public Int32 undefined2; // excel index on table 27
+        public Int32 undefined2;
         public Int32 offset;
         public Int32 shift;
         public Int32 minSet;
         public Int32 maxSet;
         [ExcelOutput(IsTableIndex = true, TableStringId = "STATS")]
-        public Int32 undefined3; // excel index on table 27
+        public Int32 undefined3;
         public Int32 minAssert;
         public Int32 maxAssert;
         public Int32 undefined4;
@@ -121,6 +121,10 @@ namespace Hellgate.Excel
         public string versionFunction;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 4)]
         public Int32[] undefined12;
+        [ExcelOutput(IsTableIndex = true, TableStringId = "STATS")]//table 
+        public Int32 param5Table;
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 1)]
+        public Int32[] undefined13;
 
         [FlagsAttribute]
         public enum BitMask01 : uint
@@ -183,7 +187,8 @@ namespace Hellgate.Excel
             Experience = 1,
             Money = 2,
             Quantity = 3,
-            InventoryLocation = 4
+            InventoryLocation = 4,
+            RankExp = 5
         }
     }
 }

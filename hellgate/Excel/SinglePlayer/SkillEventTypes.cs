@@ -28,6 +28,8 @@ namespace Hellgate.Excel
         [ExcelOutput(IsBool = true)]
         public Int32 paramContainsCount;//bool
         [ExcelOutput(IsBool = true)]
+        public Int32 meleeEventItemsOnStop;//bool
+        [ExcelOutput(IsBool = true)]
         public Int32 doesNotRequireTableEntry;//bool
         [ExcelOutput(IsBool = true)]
         public Int32 applySkillStats;//bool
@@ -62,6 +64,8 @@ namespace Hellgate.Excel
         [ExcelOutput(IsBool = true)]
         public Int32 usesLasers;//bool
         [ExcelOutput(IsBool = true)]
+        public Int32 VMWeaponDPS;//bool
+        [ExcelOutput(IsBool = true)]
         public Int32 usesMissiles;//bool
         [ExcelOutput(IsBool = true)]
         public Int32 canMultiBullets;//bool
@@ -73,10 +77,12 @@ namespace Hellgate.Excel
         public Int32 consumesItem;//bool
         [ExcelOutput(IsBool = true)]
         public Int32 checkPetPowerCost;//bool
+        [ExcelOutput(IsBool = true)]
+        public Int32 causesAttackEvent;//bool
         [MarshalAs(UnmanagedType.ByValTStr, SizeConst = 64)]
         public string eventHandler;
         public Int32 eventStringFunction;
-        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 32)]
+        [MarshalAs(UnmanagedType.ByValArray, SizeConst = 36)]
         byte[] undefined1;
 
         [FlagsAttribute]
@@ -127,7 +133,10 @@ namespace Hellgate.Excel
             usesUseUltimateOwner = 32,
             unk05 = 64,
             unk06 = 128,
-            usesIncludeInUiCount = 256
+            usesIncludeInUiCount = 256,
+			unk07 = 512,
+			unk08 = 1024,
+			usesLaserDoNotTargetUnit = 2048
         }
     }
 }

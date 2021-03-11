@@ -274,6 +274,16 @@ namespace Hellgate
                 _bitBuffer.FreeBuffer();
             }
         }
+        public void ParseUnitObjectFM(byte[] buffer, int offset, int maxBytes, FileManager fileManager)
+        {
+            FileManager = fileManager;
+            lock (_bitBuffer)
+            {
+                _bitBuffer.SetBuffer(buffer, offset, maxBytes);
+                _ReadUnit();
+                _bitBuffer.FreeBuffer();
+            }
+        }
 
         /// <summary>
         /// Parses the wardrobe appearance segment of a unit object byte array and populates the current UnitObject.
@@ -522,6 +532,8 @@ namespace Hellgate
         /// </summary>
         private void _ReadUnit()
         {
+            //FileManager fileManager = new FileManager(Config.HglDir);
+
             //// start of header
             // unit object versions
             _version = _bitBuffer.ReadInt16();
@@ -597,13 +609,12 @@ namespace Hellgate
                 {
                     ushort levelCode = _bitBuffer.ReadUInt16(); // table 0x6D (LEVEL)
                     ushort difficultyCode = _bitBuffer.ReadUInt16();  // table 0xB2 (DIFFICULTY)
-
                     SaveLocation saveLocation = new SaveLocation
                     {
                         Level = (LevelRow)FileManager.GetRowFromCode(Xls.TableCodes.LEVEL, (short)levelCode),
-                        Difficulty = (DifficultyRow)FileManager.GetRowFromCode(Xls.TableCodes.DIFFICULTY, (short)difficultyCode)
-                    };
-                    SaveLocations.Add(saveLocation);
+						Difficulty = (DifficultyRow)FileManager.GetRowFromCode(Xls.TableCodes.DIFFICULTY, (short)difficultyCode)
+					};
+					SaveLocations.Add(saveLocation);
 
                     if ((SaveLocations[i].Level == null && SaveLocations[i].Difficulty != null) || (SaveLocations[i].Level != null && SaveLocations[i].Difficulty == null))
                     {

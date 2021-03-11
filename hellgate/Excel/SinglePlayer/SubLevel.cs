@@ -15,6 +15,8 @@ namespace Hellgate.Excel
         [ExcelOutput(IsTableIndex = true, TableStringId = "LEVEL_DRLGS")]
         public Int32 drlg;//idx
         [ExcelOutput(IsBool = true)]
+        public Int32 allowRecall;//bool
+        [ExcelOutput(IsBool = true)]
         public Int32 allowTownPortals;//bool
         [ExcelOutput(IsBool = true)]
         public Int32 allowMonsterDistribution;//bool

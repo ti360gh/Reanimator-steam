@@ -31,6 +31,8 @@ namespace Hellgate.Excel
         public Int32 buyPriceBase;
         [ExcelOutput(IsScript = true)]
         public Int32 sellPriceBase;
+        [ExcelOutput(IsScript = true)]
+        public Int32 upgradePriceBase;
         public Int32 augmentCostCommon;
         public Int32 augmentCostRare;
         public Int32 augmentCostLegendary;

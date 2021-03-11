@@ -636,8 +636,10 @@ namespace Hellgate
                         var sortedList = from element in Rows
                                          let rowHeader = (RowHeader)rowHeaderField.GetValue(element)
                                          where (rowHeader.Unknown1 != 0x02 &&
-                                                (rowHeader.Unknown2 >= 0x38 && rowHeader.Unknown2 <= 0x3F || rowHeader.Unknown2 == 0x01) && // 56 to 63 or 1
-                                                (rowHeader.VersionMajor == 0 || rowHeader.VersionMajor == 10))
+                                               // (rowHeader.Unknown2 >= 0x38 && rowHeader.Unknown2 <= 0x3F || rowHeader.Unknown2 == 0x01) && // 56 to 63 or 1
+                                               // (rowHeader.VersionMajor == 0 || rowHeader.VersionMajor == 10))
+                                                (rowHeader.Unknown2 >= 0x30 && rowHeader.Unknown2 <= 0x3F || rowHeader.Unknown2 == 0x01) && // steam version
+                                                (rowHeader.VersionMajor < 50 )) // steam version
                                          group element by fieldInfo.GetValue(element) into groupedElements
                                          let elementFirst = groupedElements.First()
                                          orderby ReadStringTable((int)fieldInfo.GetValue(elementFirst))
@@ -651,8 +653,10 @@ namespace Hellgate
                         var sortedList = from element in Rows
                                          let rowHeader = (RowHeader)rowHeaderField.GetValue(element)
                                          where (rowHeader.Unknown1 != 0x02 &&
-                                                (rowHeader.Unknown2 >= 0x38 && rowHeader.Unknown2 <= 0x3F || rowHeader.Unknown2 == 0x01) &&
-                                                (rowHeader.VersionMajor == 0 || rowHeader.VersionMajor == 10))
+                                               // (rowHeader.Unknown2 >= 0x38 && rowHeader.Unknown2 <= 0x3F || rowHeader.Unknown2 == 0x01) &&
+                                               // (rowHeader.VersionMajor == 0 || rowHeader.VersionMajor == 10))
+                                                (rowHeader.Unknown2 >= 0x30 && rowHeader.Unknown2 <= 0x3F || rowHeader.Unknown2 == 0x01) && // steam version
+                                                (rowHeader.VersionMajor < 50 )) // steam version
                                                 && fieldInfo.GetValue(element).ToString() != "-1"
                                          group element by fieldInfo.GetValue(element) into groupedElements
                                          let elementFirst = groupedElements.First()
@@ -668,8 +672,10 @@ namespace Hellgate
                         var sortedList = from element in Rows
                                          let rowHeader = (RowHeader)rowHeaderField.GetValue(element)
                                          where (rowHeader.Unknown1 != 0x02 &&
-                                                (rowHeader.Unknown2 >= 0x38 && rowHeader.Unknown2 <= 0x3F || rowHeader.Unknown2 == 0x01) &&
-                                                (rowHeader.VersionMajor == 0 || rowHeader.VersionMajor == 10))
+                                                (rowHeader.Unknown2 >= 0x30 && rowHeader.Unknown2 <= 0x3F || rowHeader.Unknown2 == 0x01) && // steam version
+                                                (rowHeader.VersionMajor < 50 )) // steam version
+                                                //(rowHeader.Unknown2 >= 0x38 && rowHeader.Unknown2 <= 0x3F || rowHeader.Unknown2 == 0x01) &&
+                                                //(rowHeader.VersionMajor == 0 || rowHeader.VersionMajor == 10 || rowHeader.VersionMajor == 20))
                                          orderby fieldInfo.GetValue(element), sortBy2.GetValue(element)
                                          select Rows.IndexOf(element);
                         sortedIndexArrays[pos] = sortedList.ToArray();
@@ -681,8 +687,10 @@ namespace Hellgate
                         var sortedList = from element in Rows
                                          let rowHeader = (RowHeader)rowHeaderField.GetValue(element)
                                          where (rowHeader.Unknown1 != 0x02 &&
-                                                (rowHeader.Unknown2 >= 0x38 && rowHeader.Unknown2 <= 0x3F || rowHeader.Unknown2 == 0x01) &&
-                                                (rowHeader.VersionMajor == 0 || rowHeader.VersionMajor == 10))
+                                                // (rowHeader.Unknown2 >= 0x38 && rowHeader.Unknown2 <= 0x3F || rowHeader.Unknown2 == 0x01) &&
+                                                // (rowHeader.VersionMajor == 0 || rowHeader.VersionMajor == 10))
+                                                (rowHeader.Unknown2 >= 0x30 && rowHeader.Unknown2 <= 0x3F || rowHeader.Unknown2 == 0x01) && // steam version
+                                                (rowHeader.VersionMajor < 50 )) // steam version
                                          group element by fieldInfo.GetValue(element) into groupedElements
                                          let elementFirst = groupedElements.First()
                                          orderby fieldInfo.GetValue(elementFirst)
