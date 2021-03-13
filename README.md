@@ -1,8 +1,10 @@
 # Reanimator-steam
-Introduction
+
+## IDXSpecification
+###Introduction
 The index (.idx) file is reference table that maps the file names, directories, sizes and offsets within the data (.dat) file. The file is encrypted which must be decrtyped before it can be modified.
 
-File Structure
+###File Structure
 
 | Alias | Size | Notes |
 |:----------|:---------|:----------|
@@ -48,5 +50,7 @@ File Structure
 | } |
 
 
-Encryption
+###Encryption
 The algorithm used the encrypt the index.
+
+
