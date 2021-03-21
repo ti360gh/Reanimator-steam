@@ -149,6 +149,7 @@ namespace Hellgate.Excel
 
         public enum RevealCondition
         {
+            Unavailable = -1, 
             Always = 0,
             AmtComplete = 1,
             Completion = 2,
@@ -157,6 +158,7 @@ namespace Hellgate.Excel
 
         public enum HideCondition
         {
+            Unavailable = -1, 
             never = 0,
             AmtComplete = 1,
             ParentComplete = 2
