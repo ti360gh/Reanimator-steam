@@ -21,17 +21,17 @@ namespace Hellgate.Excel
         public Int32 treasureResult;
         [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]//table 17h
         public Int32 ingredient1UnitType;
-        [ExcelOutput(IsTableIndex = true, TableStringId = "ITEMQUALITY")]//table 45h
+        [ExcelOutput(IsTableIndex = true, TableStringId = "ITEM_QUALITY")]//table 45h
         public Int32 ingredient1ItemQuality;
         public Int32 ingredient1ItemCount;
         [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]//table 17h
         public Int32 ingredient2UnitType;
-        [ExcelOutput(IsTableIndex = true, TableStringId = "ITEMQUALITY")]//table 45h
+        [ExcelOutput(IsTableIndex = true, TableStringId = "ITEM_QUALITY")]//table 45h
         public Int32 ingredient2ItemQuality;
         public Int32 ingredient2ItemCount;
         [ExcelOutput(IsTableIndex = true, TableStringId = "UNITTYPES")]//table 17h
         public Int32 ingredient3UnitType;
-        [ExcelOutput(IsTableIndex = true, TableStringId = "ITEMQUALITY")]//table 45h
+        [ExcelOutput(IsTableIndex = true, TableStringId = "ITEM_QUALITY")]//table 45h
         public Int32 ingredient3ItemQuality;
         public Int32 ingredient3ItemCount;
         [MarshalAs(UnmanagedType.ByValArray, SizeConst = 9)]

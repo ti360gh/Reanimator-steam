@@ -4,6 +4,6 @@
     <StartArguments>items.txt</StartArguments>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
-    <StartArguments>recipes_combine.txt</StartArguments>
+    <StartArguments>recipes.txt</StartArguments>
   </PropertyGroup>
 </Project>
