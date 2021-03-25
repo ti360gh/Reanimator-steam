@@ -214,7 +214,7 @@ namespace Hellgate
             {"GLOBAL_THEMES", new DataFileAttributes {RowType = typeof(GlobalThemes), StructureId = 0xDED8FC55}},
             {"INVENTORY", new DataFileAttributes {RowType = typeof(Inventory), HasScriptTable = true, StructureId = 0x760F2089}},
             {"ITEM_LEVELS", new DataFileAttributes {RowType = typeof(ItemLevels), HasScriptTable = true, StructureId = 0xC2BC109C}},
-            {"ITEM_QUALITY", new DataFileAttributes {FileName = "ITEMQUALITY", RowType = typeof(ItemQuality), HasScriptTable = true, StructureId = 0xFA04ABA6}},
+            {"ITEMQUALITY", new DataFileAttributes {FileName = "ITEMQUALITY", RowType = typeof(ItemQuality), HasScriptTable = true, StructureId = 0xFA04ABA6}},
             {"ITEMS", new DataFileAttributes {RowType = typeof(Items), HasScriptTable = true, HasStats = true, StructureId = 0x3686536E}},
             {"LEVEL_SCALING", new DataFileAttributes {FileName = "LEVELSCALING", RowType = typeof(LevelScaling), StructureId = 0x965ABB3E}},
             {"LOADING_TIPS", new DataFileAttributes {RowType = typeof(LoadingTips), HasScriptTable = true, StructureId = 0x231F1AB3}},
