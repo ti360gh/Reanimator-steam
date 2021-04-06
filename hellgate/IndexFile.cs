@@ -3,7 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Runtime.InteropServices;
 using System.ComponentModel;
+using System.IO;    // MMan
 using Revival.Common;
+using System.Windows.Forms;
 
 namespace Hellgate
 {
@@ -252,6 +254,32 @@ namespace Hellgate
             public UInt32 EndToken;                     //                  must be Token.Sect
         }
 
+        [StructLayout(LayoutKind.Sequential, Pack = 1)]
+        private class FileEntryStructEX
+        {
+            public UInt32 StartToken;
+            public UInt32 DirectoryHash;
+            public UInt32 NameHash;
+            public Int64 Offset;
+            public Int32 SizeUncompressed;
+            public Int32 SizeCompressed;
+            public Int32 Null1;
+            public byte DirStringIncluded;                    // New
+            public Int32 DirectoryIndex;
+            public byte NameStringIncluded;                   // New
+            public Int32 NameIndex;
+                                                              // String and stringlen go here;
+            public Int64 FileTime;
+            public Int32 Unknown23;
+            public Int32 Unknown24;
+            public Int32 Null21;   
+            public Int32 Null22;   
+            public Int32 Null23;   
+            public Int32 First4BytesOfFile; 
+            public Int32 Second4BytesOfFile;
+            public UInt32 EndToken;         
+        }
+
         private class FileEntry : PackFileEntry
         {
             private readonly FileEntryStruct _fileEntryStruct;
@@ -415,6 +443,7 @@ namespace Hellgate
             ParseFileBytes(buffer);
         }
 
+    //    private static int dcount = 0;
         /// <summary>
         /// Parses a serialized version of an index file.
         /// </summary>
@@ -432,10 +461,82 @@ namespace Hellgate
                 return;
             }
 
+           
             // is it encrypted
             if (fileHeadToken != Token.Head)
             {
-                Crypt.Decrypt(buffer);
+                int cryptoffset = 0;
+
+                // Decrypt header
+                Crypt.Decrypt2Reset();
+                Crypt.Decrypt2SetBuf(buffer);
+                Crypt.Decrypt2(Marshal.SizeOf(typeof(FileHeader)), 0);
+
+                FileHeader fileHeader = FileTools.ByteArrayToStructure<FileHeader>(buffer, ref cryptoffset);
+
+                // Decrypt the strings section
+                Crypt.Decrypt2(Marshal.SizeOf(typeof(StringsHeader)), 0);
+                
+                StringsHeader stringsHeader = FileTools.ByteArrayToStructure<StringsHeader>(buffer, ref cryptoffset);
+                if (stringsHeader.StringsToken != Token.Sect) throw new Exceptions.UnexpectedTokenException(Token.Sect, stringsHeader.StringsToken);
+
+                Crypt.Decrypt2(stringsHeader.StringByteCount, 0);
+                cryptoffset += stringsHeader.StringByteCount;
+
+                // Decrypt String Details
+                Crypt.Decrypt2((stringsHeader.StringsCount * Marshal.SizeOf(typeof(StringDetailsStruct))) + 4, 0);
+                cryptoffset += (stringsHeader.StringsCount * Marshal.SizeOf(typeof(StringDetailsStruct))) + 4;
+
+                // Decrypt FileEntries
+                Crypt.Decrypt2((fileHeader.FileCount * Marshal.SizeOf(typeof(FileEntryStruct))) + 4, 0);
+                cryptoffset += (fileHeader.FileCount * Marshal.SizeOf(typeof(FileEntryStruct))) +4;
+
+                //int cryptoffset = 0x57D1D0; // Till end of file 0x1d110
+                int i = 0;
+                while ( cryptoffset < buffer.Count())
+                {
+                    i++;
+                    int temp = cryptoffset;
+                    Crypt.Decrypt2Reset();
+                    uint ckey = StreamTools.ReadUInt32(buffer, ref cryptoffset); cryptoffset -= 4;
+                    Crypt.Decrypt2SetKey(ckey);
+                    Crypt.Decrypt2(0x29, (uint)temp);
+
+                    cryptoffset = cryptoffset + 0x24;
+
+                    byte dirincluded = StreamTools.ReadByte(buffer, ref cryptoffset);
+                    cryptoffset += 4; // dirindex here 4 bytes
+                    if (dirincluded == 1) 
+                    {
+                        
+                        Crypt.Decrypt2(0x2, (uint)temp);
+                        int clen = StreamTools.ReadInt16(buffer, ref cryptoffset);
+                        Crypt.Decrypt2(clen + 1, (uint)temp);
+                        cryptoffset += clen + 1;
+                    }
+
+                    Crypt.Decrypt2(0x5, (uint)temp);
+
+                    byte nameincluded = StreamTools.ReadByte(buffer, ref cryptoffset);
+                    cryptoffset += 4; // nameindex here 4 bytes
+                    if (nameincluded == 1)
+                    {
+                        Crypt.Decrypt2(0x2, (uint)temp);
+                        int clen = StreamTools.ReadInt16(buffer, ref cryptoffset);
+                        Crypt.Decrypt2(clen + 1, (uint)temp);
+                        cryptoffset += clen + 1;
+                    }
+
+                    Crypt.Decrypt2(0x28, (uint)temp);
+                    cryptoffset += 0x28;
+                }
+/*
+                using (BinaryWriter writer = new BinaryWriter(File.Open("c:\\temp\\debug." + dcount + ".dump", FileMode.Create)))    // MMan ->
+                {
+                    writer.Write(buffer);
+                }
+                dcount++;
+  */              // -> MMan
             }
             _ParseDataType(buffer);
         }
@@ -547,6 +648,69 @@ namespace Hellgate
                 };
 
                 Files.Add(fileEntry);
+            }
+
+            try
+            {
+                // Suspect code  
+
+                // Odd new part of file
+                while (offset < buffer.Count())
+                {
+                    int startoffset = offset;
+                    uint ckey = StreamTools.ReadUInt32(buffer, ref offset);
+                    FileEntryStructEX fTemp = FileTools.ByteArrayToStructure<FileEntryStructEX>(buffer, ref offset);
+                    FileEntryStruct fixedEntry = new FileEntryStruct();
+
+                    int tempoffset = startoffset;
+                    // Fill easy ones
+                    fixedEntry.DirectoryHash = fTemp.DirectoryHash;
+                    fixedEntry.NameHash = fTemp.NameHash;
+                    fixedEntry.Offset = fTemp.Offset;
+                    fixedEntry.SizeUncompressed = fTemp.SizeUncompressed;
+                    fixedEntry.SizeCompressed = fTemp.SizeCompressed;
+                    fixedEntry.Null1 = fTemp.Null1;
+                    fixedEntry.DirectoryIndex = fTemp.DirectoryIndex;
+                    tempoffset += 0x29;
+                    if (fTemp.DirStringIncluded == 1)   // 1051 or 1052
+                    {
+                        tempoffset += 2;
+                        strings.Add(FileTools.ByteArrayToStringASCII(buffer, tempoffset));              // String here
+                        tempoffset += strings.Last().Length + 1;
+                    }
+                    tempoffset += 0x1;
+                    fixedEntry.NameIndex = StreamTools.ReadInt32(buffer, ref tempoffset);
+
+                    if (fTemp.NameStringIncluded == 1)   // 1051 or 1052
+                    {
+                        tempoffset += 2;
+                        strings.Add(FileTools.ByteArrayToStringASCII(buffer, tempoffset));              // String here
+                        tempoffset += strings.Last().Length + 1;
+                    }
+                    // 00 07 EF 69 27 
+                    fixedEntry.FileTime = StreamTools.ReadInt64(buffer, ref tempoffset);   // CA 69 D4 01 
+                    fixedEntry.Unknown23 = StreamTools.ReadInt32(buffer, ref tempoffset);    // E4 C0 04 39
+                    fixedEntry.Unknown24 = StreamTools.ReadInt32(buffer, ref tempoffset);    // FC FB 70 24
+                    fixedEntry.Null21 = StreamTools.ReadInt32(buffer, ref tempoffset);    // 00 00 00 00 
+                    fixedEntry.Null22 = StreamTools.ReadInt32(buffer, ref tempoffset);    // 00 00 00 00  
+                    fixedEntry.Null23 = StreamTools.ReadInt32(buffer, ref tempoffset);    // 00 00 00 00
+                    fixedEntry.First4BytesOfFile = StreamTools.ReadInt32(buffer, ref tempoffset);   // 43 4F 30 6B
+                    fixedEntry.Second4BytesOfFile = StreamTools.ReadInt32(buffer, ref tempoffset);  // 08 00 00 00
+                    fixedEntry.EndToken = StreamTools.ReadUInt32(buffer, ref tempoffset);   // 6F 69 67 68
+
+                    PackFileEntry fileEntry = new FileEntry(fixedEntry)
+                    {
+                        Pack = this,
+                        Path = System.IO.Path.Combine(strings[fixedEntry.DirectoryIndex], strings[fixedEntry.NameIndex]),
+                    };
+
+                    Files.Add(fileEntry);
+
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
             }
 
             HasIntegrity = true;
