@@ -243,7 +243,7 @@ namespace Hellgate
         private class CryptState
         {
             public const int Key1 = 0x10DCD;
-            public const int Key2 = 0xF4559D5;
+            public static UInt32 Key2 = 0xF4559D5;
             public const int Key3 = 666;
             public const int BlockSize = 32;
             public const int TableSize = BlockSize * sizeof(Int32);
@@ -252,8 +252,31 @@ namespace Hellgate
             public Byte[] Table { get; private set; }
 
             public UInt32 Offset { get; set; }
+            public UInt32 BufOffset { get; set; }
             public UInt32 BlockIndex { get; set; }
             public Int32 Size { get { return Data.Length; } }
+
+            public void Reset()
+            {
+                Offset = 0;
+                Key2 = 0xF4559D5;
+                BlockIndex = 0xFFFFFFFF;
+            }
+
+            public void ResetBI()
+            {
+                BlockIndex = 0xFFFFFFFF;
+            }
+
+            public void SetKey(UInt32 key)
+            {
+                Key2 = key;
+            }
+
+            public void SetBuf(byte[] indexBuffer)
+            {
+                Data = indexBuffer;
+            }
 
             public CryptState(byte[] indexBuffer)
             {
@@ -261,6 +284,12 @@ namespace Hellgate
                 BlockIndex = 0xFFFFFFFF;
                 Table = new Byte[BlockSize * sizeof(Int32)];
             }
+            public CryptState()
+            {
+                BlockIndex = 0xFFFFFFFF;
+                Table = new Byte[BlockSize * sizeof(Int32)];
+            }
+
         }
 
         private static byte _GetCryptByte(CryptState cryptState)
@@ -300,7 +329,7 @@ namespace Hellgate
                         value += CryptState.Key3;
                         for (int i = 0; i < CryptState.BlockSize; i++)
                         {
-                            value = (value * CryptState.Key1) + CryptState.Key2;
+                            value = (value * CryptState.Key1) + (int)CryptState.Key2;
                             *(Int32*)(pTable + i * sizeof(Int32)) = value;
                         }
                     }
@@ -310,16 +339,38 @@ namespace Hellgate
             }
         }
 
-        //public static void Decrypt(byte[] indexBuffer)
-        //{
-        //    CryptState cryptState = new CryptState(indexBuffer);
+        // MMan
 
-        //    while (cryptState.Offset < cryptState.Size)
-        //    {
-        //        cryptState.Data[cryptState.Offset] -= _GetCryptByte(cryptState);
-        //        cryptState.Offset++;
-        //    }
-        //}
+        private static CryptState cState = new CryptState();
+        public static void Decrypt2Reset()
+        {
+            cState.Reset();
+        }
+
+        public static void Decrypt2ResetBI()
+        {
+            cState.ResetBI();
+        }
+
+        public static void Decrypt2SetKey(UInt32 key)
+        {
+            cState.SetKey(key);
+        }
+
+        public static void Decrypt2SetBuf(byte[] buf)
+        {
+            cState.SetBuf(buf);
+        }
+
+        public static unsafe void Decrypt2(int len, uint loc)
+        {
+            int i = len;
+            while (i != 0)
+            {
+                cState.Data[cState.Offset + loc] -= _GetCryptByte(cState);
+                cState.Offset++; i--;
+            }
+        }
 
         public static void Encrypt(byte[] indexBuffer)
         {
