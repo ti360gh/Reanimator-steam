@@ -662,6 +662,11 @@ namespace Hellgate
                     FileEntryStructEX fTemp = FileTools.ByteArrayToStructure<FileEntryStructEX>(buffer, ref offset);
                     FileEntryStruct fixedEntry = new FileEntryStruct();
 
+                    if (fTemp.StartToken != Token.Info) // end of file structures.
+					{
+                        break;
+					}
+
                     int tempoffset = startoffset;
                     // Fill easy ones
                     fixedEntry.DirectoryHash = fTemp.DirectoryHash;
