@@ -891,11 +891,27 @@ namespace Revival.Common
                 {
                     byte[] buffer = (offset < length) ? GetDelimintedByteArray(source, ref offset, delimiter) : null;
                     String newString = (buffer == null || buffer.Length == 0) ? String.Empty : ByteArrayToStringASCII(buffer, 0);
-                    newRow[i] = newString.Replace("\"", "");
+                    // Steam version has \" in code
+                    if (newString.Length != 0)
+                    {
+                        if (newString[0] == '"' && newString[newString.Length-1] == '"')
+                        {
+                            newRow[i] = newString.Substring(1, newString.Length - 2);
+                        }
+                        else
+                        {
+                            newRow[i] = newString.Replace("\"", "");
+                        }
+                    }
+					else
+					{
+						newRow[i] = newString.Replace("\"", "");
+					}
+
                 }
 
-                //if (offset < source.Length && source[offset] == delimiter) offset += sizeof(byte);
-                if (offset < source.Length && source[offset] == CR) offset += sizeof(byte);
+            //if (offset < source.Length && source[offset] == delimiter) offset += sizeof(byte);
+            if (offset < source.Length && source[offset] == CR) offset += sizeof(byte);
                 if (offset < source.Length && source[offset] == LF) offset += sizeof(byte);
 
                 if ((row == 0) && (ignoreFirstRow))
