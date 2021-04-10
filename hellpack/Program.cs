@@ -21,6 +21,7 @@ namespace Revival
                                 " /s\tSearch current directory for files\n" +
                                 " /e\tDo not pack source files\n" +
                                 " /p:%\t% = .idx .dat filename\n" +
+                                " /ut\tUN-Cook excel files\n" +
                                 " /h:%\t% = Path to Hellgate installation\n";
         private static FileManager _fileManager;
 
@@ -38,6 +39,7 @@ namespace Revival
             bool doExcludeRaw = false; // do not pack source files, only cooked versions.
             bool doLevelRules = false;
             bool doRoomDefinitions = false;
+            bool doUnCookTxt = false;
 
             List<string> filesToPack = new List<string>();
             List<string> excelFilesToCook = new List<string>();
@@ -45,6 +47,7 @@ namespace Revival
             List<string> xmlFilesToCook = new List<string>();
             List<string> levelRulesFilesToSerialize = new List<string>();
             List<string> roomDefinitionFilesSerialize = new List<string>();
+            List<string> excelFilesToUnCook = new List<string>();
 
             #region alexs_stuff
             if (false)
@@ -192,6 +195,7 @@ namespace Revival
                 doExcludeRaw = true;
                 doLevelRules = true;
                 doRoomDefinitions = true;
+                doUnCookTxt = true;
             }
             else
             {
@@ -219,6 +223,9 @@ namespace Revival
                             break;
                         case "/rd":
                             doRoomDefinitions = true;
+                            break;
+                        case "/ut":
+                            doUnCookTxt = true;
                             break;
                         case "/?":
                         case "/help":
@@ -268,6 +275,12 @@ namespace Revival
                             {
                                 xmlFilesToCook.Add(arg);
                                 doCookXml = true;
+                                break;
+                            }
+                            if (arg.EndsWith(ExcelFile.Extension))
+                            {
+                                excelFilesToUnCook.Add(arg);
+                                doUnCookTxt = true;
                                 break;
                             }
                             else
@@ -369,6 +382,51 @@ namespace Revival
                 PackDatFile(filesToPack.ToArray(), Path.Combine(dataDir, _defaultDat + ".idx"), false);
             }
             #endregion
+
+            if (doUnCookTxt)
+			{
+                foreach (String UnCooking in excelFilesToUnCook)
+                {
+					DataFile dataFile;
+                    Console.WriteLine("UnCooking {0}...", UnCooking);
+                    byte[] cookedBytes = File.ReadAllBytes(UnCooking);
+                    try
+                    {
+                        if (UnCooking.EndsWith(ExcelFile.Extension))
+                        {
+                            dataFile = new ExcelFile(cookedBytes, UnCooking, _fileManager.ClientVersion);
+                        }
+                        else
+                        {
+                            dataFile = new StringsFile(cookedBytes, UnCooking);
+                        }
+                    }
+                    catch (Exceptions.DataFileStringIdNotFound dataFileStringIdNotFound)
+                    {
+                        Debug.WriteLine(dataFileStringIdNotFound.ToString());
+                        ExceptionLogger.LogException(dataFileStringIdNotFound);
+                        continue;
+                    }
+                    catch (Exception ex)
+                    {
+                        Debug.WriteLine(ex.ToString());
+                        ExceptionLogger.LogException(ex);
+                        Console.WriteLine(String.Format("Critical Error: Failed to load data file {0} (ClientVersion = {1})", UnCooking, _fileManager.ClientVersion));
+                        continue;
+                    }
+
+                    if (!dataFile.HasIntegrity)
+                    {
+                        String failedParse = "Error: Failed to load data file: " + dataFile.StringId;
+                        Debug.WriteLine(failedParse); // Console.WriteLine randomly (more often than not) just doesn't output to the Ouput window in VS during debugging
+                        Console.WriteLine(failedParse);
+                        continue;
+                    }
+
+                    if (dataFile.Attributes.IsEmpty) continue;
+                    File.WriteAllBytes(UnCooking.Replace(".cooked", ""), dataFile.ExportCSV(_fileManager));
+                }
+			}
 
             return;
         }
