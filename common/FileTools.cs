@@ -960,33 +960,44 @@ namespace Revival.Common
             while (offset < source.Length)
             {
                 characterIn = ByteArrayToUShort(source, ref offset);
-                if ((characterIn == EN && !(lastCharacterEncap))) encapsulationOpen = !encapsulationOpen;
-                lastCharacterEncap = ((characterIn == EN)) ? true : false;
+                // Steam permits null string or \" in string.
+				if ((characterIn == delimiter))
+				{
+					arrayBuffer[col] = Encoding.Unicode.GetString(source, offset - stringLen - sizeof(short), stringLen);
+					// Steam version has \" in code
+					if (arrayBuffer[col][0] == '"' && arrayBuffer[col][arrayBuffer[col].Length-1] == '"')
+					{
+						arrayBuffer[col] = arrayBuffer[col].Substring(1, arrayBuffer[col].Length - 2);
+					}
+					else
+					{
+						arrayBuffer[col] = arrayBuffer[col].Replace("\"", "");
+					}
+					col++;
+					stringLen = 0;
+					continue;
+				}
 
-                if (!(encapsulationOpen))
-                {
-                    if ((characterIn == delimiter))
-                    {
-                        arrayBuffer[col] = Encoding.Unicode.GetString(source, offset - stringLen - sizeof(short), stringLen);
-                        arrayBuffer[col] = arrayBuffer[col].Replace("\"", "");
-                        col++;
-                        stringLen = 0;
-                        continue;
-                    }
-
-                    if ((characterIn == CR || characterIn == LF))
-                    {
-                        arrayBuffer[col] = Encoding.Unicode.GetString(source, offset - stringLen - sizeof(short), stringLen);
-                        arrayBuffer[col] = arrayBuffer[col].Replace("\"", "");
-                        stringList.Add(arrayBuffer);
-                        stringLen = 0;
-                        col = 0;
-                        arrayBuffer = new string[noCols];
-                        ushort peek = BitConverter.ToUInt16(source, offset);
-                        if ((peek == CR || peek == LF)) offset += sizeof(ushort);
-                        continue;
-                    }
-                }
+				if ((characterIn == CR || characterIn == LF))
+				{
+					arrayBuffer[col] = Encoding.Unicode.GetString(source, offset - stringLen - sizeof(short), stringLen);
+					// Steam version has \" in code
+					if (arrayBuffer[col][0] == '"' && arrayBuffer[col][arrayBuffer[col].Length-1] == '"')
+					{
+						arrayBuffer[col] = arrayBuffer[col].Substring(1, arrayBuffer[col].Length - 2);
+					}
+					else
+					{
+						arrayBuffer[col] = arrayBuffer[col].Replace("\"", "");
+					}
+					stringList.Add(arrayBuffer);
+					stringLen = 0;
+					col = 0;
+					arrayBuffer = new string[noCols];
+					ushort peek = BitConverter.ToUInt16(source, offset);
+					if ((peek == CR || peek == LF)) offset += sizeof(ushort);
+					continue;
+				}
 
                 stringLen += sizeof(short);
             }

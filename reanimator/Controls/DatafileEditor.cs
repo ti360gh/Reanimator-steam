@@ -416,12 +416,17 @@ namespace Reanimator.Controls
 
             // Prompt the user where to save
             String initialDir = Directory.Exists(Config.LastDirectory) ? Config.LastDirectory : Config.HglDir;
-            SaveFileDialog saveFileDialog = new SaveFileDialog
+			string filterText = "Text Files (.txt)|*.txt|All Types (*.*)|*.*";
+            if (_dataFile.DataType.Name == "StringBlock")
             {
-                InitialDirectory = initialDir,
-                FileName = _dataFile.FileName,
-                Filter = "Text Files (.txt)|*.txt|All Types (*.*)|*.*"
-            };
+               filterText = "String Files (.xls.uni)|*.xls.uni|All Types (*.*)|*.*";
+            }
+			SaveFileDialog saveFileDialog = new SaveFileDialog
+			{
+				InitialDirectory = initialDir,
+				FileName = _dataFile.FileName,
+				Filter = filterText
+			};
             if (saveFileDialog.ShowDialog(this) != DialogResult.OK) return;
 
             try
