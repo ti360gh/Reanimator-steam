@@ -969,16 +969,18 @@ namespace Revival.Common
 					{
 						arrayBuffer[col] = arrayBuffer[col].Substring(1, arrayBuffer[col].Length - 2);
 					}
-					else
-					{
-						arrayBuffer[col] = arrayBuffer[col].Replace("\"", "");
-					}
+                    // not needed.
+					//else
+					//{
+					//	arrayBuffer[col] = arrayBuffer[col].Replace("\"", "");
+					//}
 					col++;
 					stringLen = 0;
 					continue;
 				}
 
-				if ((characterIn == CR || characterIn == LF))
+				//if ((characterIn == CR || characterIn == LF))
+				if ((characterIn == CR)) // LF in column is allowed.
 				{
 					arrayBuffer[col] = Encoding.Unicode.GetString(source, offset - stringLen - sizeof(short), stringLen);
 					// Steam version has \" in code
@@ -986,10 +988,11 @@ namespace Revival.Common
 					{
 						arrayBuffer[col] = arrayBuffer[col].Substring(1, arrayBuffer[col].Length - 2);
 					}
-					else
-					{
-						arrayBuffer[col] = arrayBuffer[col].Replace("\"", "");
-					}
+                    // not needed.
+					//else
+					//{
+					//	arrayBuffer[col] = arrayBuffer[col].Replace("\"", "");
+					//}
 					stringList.Add(arrayBuffer);
 					stringLen = 0;
 					col = 0;
